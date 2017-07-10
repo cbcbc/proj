@@ -56,7 +56,6 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:spring-mybatis.xml,
                      classpath:spring-mvc.xml
-                    <!--,classpath:spring-jms.xml-->
         </param-value>
     </context-param>
 
