@@ -1,4 +1,4 @@
-package com.cjy.ssm.utils;
+package com.cb.eshop.utils;
 
 /**
  * Created by zcoaolas on 2017/5/28.

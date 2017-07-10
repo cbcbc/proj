@@ -1,4 +1,4 @@
-package com.cjy.ssm.controller;
+package com.cb.eshop.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

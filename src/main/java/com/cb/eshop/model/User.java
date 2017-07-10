@@ -1,5 +1,4 @@
-package com.cjy.ssm.model;
-
+package com.cb.eshop.model;
 
 import javax.ejb.Singleton;
 import javax.ejb.Stateless;

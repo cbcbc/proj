@@ -1,4 +1,4 @@
-package com.cjy.ssm.utils;
+package com.cb.eshop.utils;
 
 import javax.crypto.*;
 import javax.crypto.spec.SecretKeySpec;
