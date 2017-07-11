@@ -2,13 +2,12 @@ package com.cb.eshop.model;
 
 import javax.ejb.Singleton;
 import javax.ejb.Stateless;
+import javax.persistence.Entity;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import java.io.Serializable;
 
-@XmlRootElement
-@Singleton
-@Stateless
+@Entity
 public class User implements Serializable{
 
     private Long uid;

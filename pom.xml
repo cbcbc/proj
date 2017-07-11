@@ -183,7 +183,7 @@
     </dependency>
 
     <!-- 添加日志相关jar包 -->
-    <!--<dependency>
+    <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
       <version>${log4j.version}</version>
@@ -197,7 +197,7 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
       <version>${slf4j.version}</version>
-    </dependency>-->
+    </dependency>
 
     <!-- log end -->
     <!-- 映入JSON -->
