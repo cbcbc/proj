@@ -7,6 +7,8 @@
     <title>Title</title>
 </head>
 <body>
-HHH
+    <h4>Login Successfully!</h4>
+    <br>
+    <a href="${pageContext.request.contextPath }/logout">Logout</a>
 </body>
 </html>
