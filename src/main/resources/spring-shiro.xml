@@ -52,15 +52,22 @@
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager" />
         <property name="loginUrl" value="/login" />
-        <property name="successUrl" value="/index.jsp" />
-        <property name="unauthorizedUrl" value="/login.jsp" />
+        <!-- <property name="successUrl" value="/index.jsp" /> -->
+        <property name="unauthorizedUrl" value="/noauthc" />
         <!-- 配置哪些页面需要受保护，以及访问这些页面需要的权限 -->
         <property name="filterChainDefinitions">
             <value>
                 <!-- 第一次匹配优先的原则 -->
                 /login.jsp = anon
-                /login = anon
-                /logout = logout
+                /logout.jsp = logout
+                /noauthc.jsp = anon
+                /js/** = anon
+                /css/** =anon
+                /font-awesome/** = anon
+                /images/** = anon
+                /ordinaryuser/** = authc, roles["0"]
+                /seller/** = authc, roles["1"]
+                /manager/** = authc, roles["2"]
                 /** = authc
             </value>
         </property>
@@ -70,7 +77,7 @@
     <bean id="authenticator" class="org.apache.shiro.authc.pam.ModularRealmAuthenticator">
         <!-- 配置认证策略，只要有一个Realm认证成功即可，并且返回所有认证成功信息 -->
         <property name="authenticationStrategy">
-            <bean class="org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy"></bean>
+            <bean class="org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy" />
         </property>
     </bean>
     <!-- shiro end -->

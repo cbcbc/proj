@@ -10,18 +10,17 @@ import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
-import java.io.IOException;
 
-@Controller("/")
-public class HomeController {
+@Controller
+@RequestMapping(value = "/")
+public class LoginController {
 
-    private Logger log = Logger.getLogger(HomeController.class);
+    private Logger log = Logger.getLogger(LoginController.class);
 
     @Resource
     private IUserService userService;
@@ -40,7 +39,14 @@ public class HomeController {
         upToken.setRememberMe(false);
         try {
             currentUser.login(upToken);
-            return "index";
+            if (currentUser.hasRole("0")) {
+                return "ordinaryuser/index";
+            } else if (currentUser.hasRole("1")) {
+                return "seller/index";
+            } else if (currentUser.hasRole("2")) {
+                return "manager/index";
+            }
+
         } catch (IncorrectCredentialsException ice) {
             System.out.println("账号/密码不匹配！");
         } catch (LockedAccountException lae) {
@@ -50,5 +56,10 @@ public class HomeController {
         }
 
         return "redirect:/login";
+    }
+
+    @RequestMapping(value = "/logout", method = {RequestMethod.GET, RequestMethod.POST})
+    public String logout() {
+        return "logout";
     }
 }

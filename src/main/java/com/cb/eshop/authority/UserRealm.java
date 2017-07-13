@@ -9,6 +9,7 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
@@ -25,7 +26,16 @@ public class UserRealm extends AuthorizingRealm {
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        return null;
+        String username = (String) principals.fromRealm(getName()).iterator().next();
+        User user = userService.getUserByUsername(username);
+        Short roleType = user.getRoleType();
+        if (roleType != null) {
+            SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+            info.addRole(roleType.toString());
+            return info;
+        } else {
+            return null;
+        }
     }
 
     @Override
