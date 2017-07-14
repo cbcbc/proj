@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false" %>
 <%  String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
@@ -31,20 +32,21 @@
 							<strong>请输入账号密码</strong>
 						</div>
 						<div class="panel-body">
-							<form action="login" method="POST">
+							<form action="login" method="POST" onsubmit="return validateUsername()">
 								<br />
 								<div class="form-group input-group">
 									<span class="input-group-addon"><i class="fa fa-tag"  ></i></span>
-									<input name="username" type="text" class="form-control" placeholder="账号" />
+									<input id="username" name="username" type="text" class="form-control" placeholder="账号" />
 								</div>
 								<div class="form-group input-group">
 									<span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
-									<input name="password" type="password" class="form-control"  placeholder="密码" />
+									<input id="password" name="password" type="password" class="form-control"  placeholder="密码" />
 								</div>
+								<div><span id="errorMessage">${loginError}</span></div>
 								<hr />
 								<div style="float:right">
+
                                     <input type="submit" class="btn btn-primary" value="立即登录" />
-                                    <a href="login" >test</a>
 								</div>
 							</form>
 						</div>
@@ -53,12 +55,12 @@
 			</div>
 		</div>
 
-
 		<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
 		<script src="js/jquery-1.10.2.js" type="text/javascript"></script>
 		<script src="js/bootstrap.min.js" type="text/javascript"></script>
 		<script src="js/jquery.metisMenu.js" type="text/javascript"></script>
 		<script src="js/custom.js" type="text/javascript"></script>
+		<script src="js/login.js" type="text/javascript"></script>
 
 	</body>
 </html>

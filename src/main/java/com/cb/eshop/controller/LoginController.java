@@ -4,12 +4,10 @@ import com.cb.eshop.service.interfaces.IUserService;
 import com.cb.eshop.utils.DecriptUtil;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.LockedAccountException;
-import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,7 +29,7 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@RequestParam("username") String username, @RequestParam("password") String password) {
+    public String login(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
         Subject currentUser = SecurityUtils.getSubject();
         currentUser.logout();
 
@@ -48,14 +46,17 @@ public class LoginController {
             }
 
         } catch (IncorrectCredentialsException ice) {
-            System.out.println("账号/密码不匹配！");
+            model.addAttribute("loginError", "账号或密码不正确，请重新输入！");
+        } catch (UnknownAccountException lae) {
+            model.addAttribute("loginError", "账号或密码不正确，请重新输入！");
         } catch (LockedAccountException lae) {
+            model.addAttribute("loginError", "账户已被冻结！");
             System.out.println("账户已被冻结！");
         } catch (AuthenticationException ae) {
             System.out.println(ae.getMessage());
         }
 
-        return "redirect:/login";
+        return "login";
     }
 
     @RequestMapping(value = "/logout", method = {RequestMethod.GET, RequestMethod.POST})
