@@ -28,8 +28,8 @@ public class LoginController {
         return "/login";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
+    @RequestMapping(value = "/index", method = RequestMethod.POST)
+    public String index(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
         Subject currentUser = SecurityUtils.getSubject();
         currentUser.logout();
 

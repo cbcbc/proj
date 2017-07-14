@@ -1,20 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
-<%  String path = request.getContextPath();
-    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>登录</title>
 
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
-    <link href="css/font-awesome.css" rel="stylesheet" type="text/css" />
-    <link href="css/custom.css" rel="stylesheet" type="text/css" />
+		<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+		<link href="css/font-awesome.css" rel="stylesheet" type="text/css" />
+		<link href="css/custom.css" rel="stylesheet" type="text/css" />
 
-</head>
+	</head>
 	<body>
 		<div class="container">
 			<div class="row text-center ">
@@ -32,7 +29,7 @@
 							<strong>请输入账号密码</strong>
 						</div>
 						<div class="panel-body">
-							<form action="login" method="POST" onsubmit="return validateUsername()">
+							<form action="index" method="POST" onsubmit="return validateUsername()">
 								<br />
 								<div class="form-group input-group">
 									<span class="input-group-addon"><i class="fa fa-tag"  ></i></span>

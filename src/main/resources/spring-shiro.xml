@@ -59,6 +59,7 @@
             <value>
                 <!-- 第一次匹配优先的原则 -->
                 /login.jsp = anon
+                /index = anon
                 /logout.jsp = logout
                 /noauthc.jsp = anon
                 /js/** = anon
