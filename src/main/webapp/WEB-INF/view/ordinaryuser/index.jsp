@@ -10,7 +10,7 @@
 
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
         <link href="css/style.css" rel="stylesheet" type="text/css" />
-        <link href="css/memenu.css" rel="stylesheet" type="text/css" />
+        <link href="css/index.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <!--top-header-->
@@ -26,15 +26,15 @@
                         <div class="cart box_1">
                             <a href="checkout.html">
                                 <div class="total">
-                                    <img src="images/user.png" alt="" />
-                                    <span>username</span>
+                                    <img src="images/user.png" />
+                                    <span>${nickname}</span>&nbsp;&nbsp;- <span>${role_type}</span>
                                 </div>
                             </a>
                             <div id="user_info">
                                 <ul>
                                     <a href=""><li class="personal">个人资料</li></a>
                                     <a href=""><li class="personal">查看订单</li></a>
-                                    <a href=""><li class="personal">退出</li></a>
+                                    <a href="logout"><li class="personal">退出</li></a>
                                 </ul>
                             </div>
                             <div class="clearfix"> </div>
@@ -100,7 +100,7 @@
                         <div class="w_sidebar">
                             <section  class="sky-form">
                                 <h4>商品类目</h4>
-                                <div class="row1 scroll-pane" style="height: 100%">
+                                <div class="row1 scroll-pane" style="height: auto">
                                     <div class="col col-4">
                                         <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>所有商品</label>
                                     </div>
@@ -121,7 +121,7 @@
         </div>
         <!--product-end-->
         <!--footer-starts-->
-        <div class="footer">
+        <div class="footer" style="margin-top: 30px">
             <div class="container">
                 <div class="footer-top">
                     <div class="col-md-6 footer-left">

@@ -7,11 +7,14 @@ import java.io.Serializable;
 public class User implements Serializable{
 
     private Long id;
-    private Short roleType;
+    private Integer roleType;
     private String username;
     private String password;
+    private String nickname;
     private String phoneNumber;
     private String address;
+    private Integer isDelete;
+    private String remark;
 
     public Long getId() {
         return id;
@@ -21,11 +24,11 @@ public class User implements Serializable{
         this.id = id;
     }
 
-    public Short getRoleType() {
+    public Integer getRoleType() {
         return roleType;
     }
 
-    public void setRoleType(Short roleType) {
+    public void setRoleType(Integer roleType) {
         this.roleType = roleType;
     }
 
@@ -59,5 +62,29 @@ public class User implements Serializable{
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }

@@ -3,17 +3,47 @@
 <mapper namespace="com.cb.eshop.dao.interfaces.IUserDao">
 
     <resultMap id="UserMap" type="com.cb.eshop.model.User">
-        <id column="id" property="id" jdbcType="BIGINT"/>
-        <result column="role_type" property="roleType" jdbcType="BIGINT" />
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="role_type" property="roleType" jdbcType="INTEGER" />
         <result column="username" property="username" jdbcType="VARCHAR" />
         <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="nickname" property="nickname" jdbcType="VARCHAR" />
         <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
         <result column="address" property="address" jdbcType="VARCHAR" />
+        <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
     </resultMap>
 
     <select id="selectUserByUsername" parameterType="java.lang.String" resultMap="UserMap">
         SELECT * FROM t_user
-        WHERE username = #{username}
+            WHERE username = #{username} AND is_delete != 1
     </select>
+
+    <select id="selectSomeUsersFromStartId" parameterType="java.lang.Integer" resultMap="UserMap">
+        SELECT * FROM t_user
+            LIMIT #{startId}, 10
+    </select>
+
+    <select id="selectUserNumbers" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM t_user
+    </select>
+
+    <update id="deleteUserByUserId" parameterType="java.lang.Integer" >
+        update t_user set is_delete = 1 where id = #{userId}
+    </update>
+
+    <update id="updateUserRoleTypeByUserId">
+        update t_user set role_type = #{roleType} where id = #{userId}
+    </update>
+
+    <select id="selectUserByUsernameInAllUsers" parameterType="java.lang.String" resultMap="UserMap">
+        SELECT * FROM t_user
+            WHERE username = #{username}
+    </select>
+    
+    <insert id="addUser">
+        insert into t_user(role_type, nickname, phone_number, address, username, password, remark)
+            values(#{roleType}, #{nickname}, #{phoneNumber}, #{address},#{username}, #{password},#{remark})
+    </insert>
 
 </mapper>

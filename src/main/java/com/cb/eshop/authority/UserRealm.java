@@ -28,7 +28,7 @@ public class UserRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String username = (String) principals.fromRealm(getName()).iterator().next();
         User user = userService.getUserByUsername(username);
-        Short roleType = user.getRoleType();
+        Integer roleType = user.getRoleType();
         if (roleType != null) {
             SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
             info.addRole(roleType.toString());

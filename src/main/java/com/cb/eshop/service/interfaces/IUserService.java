@@ -5,4 +5,17 @@ import java.util.List;
 
 public interface IUserService {
     User getUserByUsername(String username);
+
+    List<User> getTenUsersByPageId(Integer pageId);
+
+    Integer getUserPageNumbers();
+
+    void deleteUserByUserId(Integer userId);
+
+    void updateUserRoleTypeByUserId(Integer roleType, Integer userId);
+
+    Boolean judgeUserIsInAllUserByUsername(String username);
+
+    void saveUser(Integer roleType, String nickname, String phoneNumber, String address, String username,
+                  String password, String remark);
 }
