@@ -46,4 +46,14 @@
             values(#{roleType}, #{nickname}, #{phoneNumber}, #{address},#{username}, #{password},#{remark})
     </insert>
 
+    <update id="updateManagerInfoByUsername">
+        update t_user set nickname = #{nickname}, phone_number = #{phoneNumber}, remark = #{remark}
+            where username = #{username}
+    </update>
+
+    <update id="updatePasswordByUsername">
+        update t_user set password = #{password}
+            where username = #{username}
+    </update>
+
 </mapper>

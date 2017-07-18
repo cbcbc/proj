@@ -24,4 +24,14 @@ public interface IUserDao {
                  @Param("phoneNumber") String phoneNumber, @Param("address") String address,
                  @Param("username") String username, @Param("password") String password,
                  @Param("remark") String remark);
+
+    void updateManagerInfoByUsername(@Param("nickname") String nickname, @Param("phoneNumber") String phoneNumber,
+                           @Param("remark") String remark, @Param("username") String username);
+
+    void updateSellerInfoByUsername();
+
+    void updateOrdinaryUserInfoByUsername();
+
+    void updatePasswordByUsername(@Param("username") String username, @Param("password") String password);
+
 }

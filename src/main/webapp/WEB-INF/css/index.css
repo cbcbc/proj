@@ -239,7 +239,7 @@ skyblue .mepanel img:hover,.skyblue form.contact input[type="text"]:focus,.skybl
 	text-decoration:underline;
 }
 
-.add_user_btn, .update_user, .delete_user, #commit_user_btn {
+.add_user_btn, .update_user, .delete_user, #commit_user_btn, .personal_btn {
 	background: #73B6E1;
 	color: #FFF;
 	padding: 0.5em 1.2em;
@@ -257,7 +257,7 @@ skyblue .mepanel img:hover,.skyblue form.contact input[type="text"]:focus,.skybl
 	margin-left: 15px;
 }
 
-#commit_user div input {
+#commit_user div input, #update_user_form div input, #update_password_form div input {
 	width: 30%;
 	margin: 10px;
 	color: #000;
@@ -294,4 +294,8 @@ skyblue .mepanel img:hover,.skyblue form.contact input[type="text"]:focus,.skybl
 	background: none;
 	outline: none;
 	border: 1px solid #000;
+}
+
+.personal_btn {
+	margin: 15px;
 }

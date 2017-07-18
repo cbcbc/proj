@@ -25,7 +25,7 @@
                     </div>
                     <div class="col-md-6 top-header-left">
                         <div class="cart box_1">
-                            <a href="checkout.html">
+                            <a href="user-info">
                                 <div class="total">
                                     <img src="images/user.png" />
                                     <span>${nickname}</span>&nbsp;&nbsp;- <span>${role_type}</span>
@@ -33,7 +33,7 @@
                             </a>
                             <div id="user_info">
                                 <ul>
-                                    <a href=""><li class="personal">个人资料</li></a>
+                                    <a href="user-info"><li class="personal">个人资料</li></a>
                                     <a href="logout"><li class="personal">退出</li></a>
                                 </ul>
                             </div>

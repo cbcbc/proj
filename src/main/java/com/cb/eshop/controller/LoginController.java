@@ -44,6 +44,10 @@ public class LoginController {
             User user = userService.getUserByUsername(username);
             HttpSession session = request.getSession();
             session.setAttribute("nickname", user.getNickname());
+            session.setAttribute("phone_number", user.getPhoneNumber());
+            session.setAttribute("address", user.getAddress());
+            session.setAttribute("username", user.getUsername());
+            session.setAttribute("remark", user.getRemark());
             if (currentUser.hasRole("0")) {
                 session.setAttribute("role_type", "普通用户");
                 return "ordinaryuser/index";
@@ -71,6 +75,6 @@ public class LoginController {
     public String logout() {
         SecurityUtils.getSubject().logout();
 
-        return "logout";
+        return "login";
     }
 }

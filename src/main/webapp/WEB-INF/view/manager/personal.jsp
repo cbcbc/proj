@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta name="keywords" content="E-SHOP, Bootstrap Web Templates" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>添加用户</title>
+        <title>个人资料</title>
 
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
         <link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -50,29 +52,23 @@
         <!--start-logo-->
         <!--addUser-starts-->
         <div style="margin-top: 50px; margin-left: 30px">
-            <h3 class="ghj">添加用户</h3>
+            <h3 class="ghj">个人资料</h3>
             <div>
-                <form action="add-user" method="post" id="commit_user" onsubmit="return commitUser()">
-                    <span id="add_user_success" style="color: red">${add_user_success}</span>
-                    <div id="add_user_part1">
+                <form action="update-user-info" method="post" id="update_user_form" onsubmit="return updateUser()">
+                    <div>
                         <span>角色类型：</span>
-                        <select class="add_user_select" name="role_type">
-                            <option value="0">普通用户</option>
-                            <option value="1">供应商</option>
-                            <option value="2">管理员</option>
-                        </select>
-                        <span> *</span><br />
-                        <span>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：</span><input name="nickname" type="text" required><span> *</span><br />
-                        <span>联系电话：</span><input name="phone_number" type="text"><br />
-                        <span>收货地址：</span><input name="address" type="text"><br />
+                        <input name="role_type" type="text" value="${role_type}" readonly><br />
+                        <span>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：</span>
+                        <input id="update_nickname" name="nickname" type="text" value="${nickname}">
+                        <span id="nickname_error" style="color: red"></span><br />
+                        <span>联系电话：</span><input name="phone_number" type="text" value="${phone_number}"><br />
                     </div>
                     <div>
-                        <span>用&nbsp;&nbsp;户&nbsp;&nbsp;名：</span><input name="username" type="text" required><span> *</span><span id="username_error" style="color: red">${username_error}</span><br />
-                        <span>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</span><input name="password" id="password" type="password" required><span> *</span><br />
-                        <span>确认密码：</span><input class="password_confirm" type="password" required><span> *</span><span class="confirm_error" style="color: red"></span><br />
-                        <span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：</span><input name="remark" type="text">
+                        <span>用&nbsp;&nbsp;户&nbsp;&nbsp;名：</span><input name="username" type="text" value="${username}" readonly><br />
+                        <span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：</span><input name="remark" type="text" value="${remark}">
                     </div>
-                    <input id="commit_user_btn" type="submit" value="提交"><br/>
+                    <input class="personal_btn" id="update_user_btn" type="submit" value="保存修改">
+                    <input class="personal_btn" id="update_password_btn" type="button" value="修改密码"><br/>
                 </form>
             </div>
         </div>

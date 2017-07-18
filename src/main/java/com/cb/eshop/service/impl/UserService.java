@@ -45,16 +45,23 @@ public class UserService implements IUserService {
 
     @Override
     public Boolean judgeUserIsInAllUserByUsername(String username) {
-        if (userDao.selectUserByUsernameInAllUsers(username) == null) {
-            return false;
-        }
-        return true;
+        return userDao.selectUserByUsernameInAllUsers(username) != null;
     }
 
     @Override
     public void saveUser(Integer roleType, String nickname, String phoneNumber, String address,
                          String username, String password, String remark) {
         userDao.addUser(roleType, nickname, phoneNumber, address, username,DecriptUtil.MD5(password), remark);
+    }
+
+    @Override
+    public void updateManagerInfoByUsername(String nickname, String phoneNumber, String remark, String username) {
+        userDao.updateManagerInfoByUsername(nickname, phoneNumber, remark, username);
+    }
+
+    @Override
+    public void updatePasswordByUsername(String username, String password) {
+        userDao.updatePasswordByUsername(username, DecriptUtil.MD5(password));
     }
 
 }
