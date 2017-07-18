@@ -65,6 +65,7 @@
                     <th class="manager_table th">角色类型及修改确认</th>
                     <th class="manager_table th">联系电话</th>
                     <th class="manager_table th">收货地址</th>
+                    <th class="manager_table th">邮件地址</th>
                     <th class="manager_table th">状态</th>
                     <th class="manager_table th"></th>
                 </tr>
@@ -89,6 +90,7 @@
                         </td>
                         <td class="manager_table">${user.phoneNumber}</td>
                         <td class="manager_table">${user.address}</td>
+                        <td class="manager_table">${user.mailAddress}</td>
                         <td class="manager_table" id="is_delete${status.index}">
                             <c:choose>
                                 <c:when test="${user.isDelete == 1}">

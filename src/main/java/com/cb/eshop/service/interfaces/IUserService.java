@@ -22,4 +22,5 @@ public interface IUserService {
     void updateManagerInfoByUsername(String nickname, String phoneNumber, String remark, String username);
 
     void updatePasswordByUsername(String username, String password);
+
 }

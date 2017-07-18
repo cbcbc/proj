@@ -6,21 +6,22 @@ import java.io.Serializable;
 @Entity
 public class User implements Serializable{
 
-    private Long id;
+    private Integer id;
     private Integer roleType;
     private String username;
     private String password;
     private String nickname;
     private String phoneNumber;
     private String address;
+    private String mailAddress;
     private Integer isDelete;
     private String remark;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -70,6 +71,14 @@ public class User implements Serializable{
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    public String getMailAddress() {
+        return mailAddress;
+    }
+
+    public void setMailAddress(String mailAddress) {
+        this.mailAddress = mailAddress;
     }
 
     public Integer getIsDelete() {

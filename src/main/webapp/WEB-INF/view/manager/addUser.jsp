@@ -65,14 +65,16 @@
                         <span>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：</span><input name="nickname" type="text" required><span> *</span><br />
                         <span>联系电话：</span><input name="phone_number" type="text"><br />
                         <span>收货地址：</span><input name="address" type="text"><br />
+                        <span>邮箱地址：</span><input id="add_mail" name="mail_address" type="text"><span class="mail_address_error" style="color: red"></span><br />
                     </div>
                     <div>
-                        <span>用&nbsp;&nbsp;户&nbsp;&nbsp;名：</span><input name="username" type="text" required><span> *</span><span id="username_error" style="color: red">${username_error}</span><br />
+                        <span>用&nbsp;&nbsp;户&nbsp;&nbsp;名：</span><input id="add_username" name="username" type="text" required><span> *</span><span id="username_error" style="color: red">${username_error}</span><br />
                         <span>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</span><input name="password" id="password" type="password" required><span> *</span><br />
                         <span>确认密码：</span><input class="password_confirm" type="password" required><span> *</span><span class="confirm_error" style="color: red"></span><br />
                         <span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：</span><input name="remark" type="text">
+
                     </div>
-                    <input id="commit_user_btn" type="submit" value="提交"><br/>
+                    <input id="commit_user_btn" type="submit" value="提交"><br />
                 </form>
             </div>
         </div>

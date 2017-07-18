@@ -10,6 +10,7 @@
         <result column="nickname" property="nickname" jdbcType="VARCHAR" />
         <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
         <result column="address" property="address" jdbcType="VARCHAR" />
+        <result column="mail_address" property="mailAddress" jdbcType="VARCHAR" />
         <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
         <result column="remark" property="remark" jdbcType="VARCHAR" />
     </resultMap>

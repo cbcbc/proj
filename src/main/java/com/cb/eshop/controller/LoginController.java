@@ -46,6 +46,7 @@ public class LoginController {
             session.setAttribute("nickname", user.getNickname());
             session.setAttribute("phone_number", user.getPhoneNumber());
             session.setAttribute("address", user.getAddress());
+            session.setAttribute("mail_address", user.getMailAddress());
             session.setAttribute("username", user.getUsername());
             session.setAttribute("remark", user.getRemark());
             if (currentUser.hasRole("0")) {

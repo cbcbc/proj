@@ -65,6 +65,7 @@
                     </div>
                     <div>
                         <span>用&nbsp;&nbsp;户&nbsp;&nbsp;名：</span><input name="username" type="text" value="${username}" readonly><br />
+                        <span>邮箱地址：</span><input id="personal_mail" name="mail_address" type="text" value="${mail_address}"><span class="mail_address_error" style="color: red"></span><br />
                         <span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：</span><input name="remark" type="text" value="${remark}">
                     </div>
                     <input class="personal_btn" id="update_user_btn" type="submit" value="保存修改">

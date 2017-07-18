@@ -68,11 +68,13 @@ public class ManageController {
     @RequestMapping(value = "/update-user-info", method = {RequestMethod.GET, RequestMethod.POST})
     public String updateUserInfo(@RequestParam("nickname") String nickname,
                      @RequestParam("phone_number") String phoneNumber, @RequestParam("remark") String remark,
-                     @RequestParam("username") String username, HttpServletRequest request) {
+                     @RequestParam("username") String username, @RequestParam("mail_address") String mailAddress,
+                                 HttpServletRequest request) {
         userService.updateManagerInfoByUsername(nickname, phoneNumber, remark, username);
         HttpSession session = request.getSession();
         session.setAttribute("nickname", nickname);
         session.setAttribute("phone_number", phoneNumber);
+        session.setAttribute("mail_address", mailAddress);
         session.setAttribute("remark", remark);
         return "manager/personal";
     }
