@@ -72,7 +72,8 @@ function updateUser() {
         }
 
         var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
-        if(!myreg.test($("#personal_mail").val())) {
+        var personalMail = $("#personal_mail").val();
+        if(personalMail != "" && !myreg.test(personalMail)) {
             $(".mail_address_error").text(" 请输入有效的邮箱地址！");
             $("#nickname_error").text("");
             return false;

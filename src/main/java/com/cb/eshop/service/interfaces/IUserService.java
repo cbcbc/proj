@@ -19,7 +19,7 @@ public interface IUserService {
     void saveUser(Integer roleType, String nickname, String phoneNumber, String address, String username,
                   String password, String remark);
 
-    void updateManagerInfoByUsername(String nickname, String phoneNumber, String remark, String username);
+    void updateUserInfoByUsername(String nickname, String phoneNumber, String address, String remark, String username, String mailAddress);
 
     void updatePasswordByUsername(String username, String password);
 

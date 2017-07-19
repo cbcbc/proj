@@ -63,8 +63,8 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void updateManagerInfoByUsername(String nickname, String phoneNumber, String remark, String username) {
-        userDao.updateManagerInfoByUsername(nickname, phoneNumber, remark, username);
+    public void updateUserInfoByUsername(String nickname, String phoneNumber, String address, String remark, String username, String mailAddress) {
+        userDao.updateUserInfoByUsername(nickname, phoneNumber, address, remark, username, mailAddress);
     }
 
     @Override

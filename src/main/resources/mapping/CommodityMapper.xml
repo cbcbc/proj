@@ -27,7 +27,7 @@
 
     <select id="selectSomeCommoditysFromStartId" resultMap="CommodityMap">
         SELECT * FROM t_commodity WHERE seller_id = #{sellerId}
-            LIMIT #{startId}, 10
+            LIMIT #{startId}, #{pageNum}
     </select>
 
     <select id="selectCommodityNumbers" parameterType="java.lang.Integer" resultType="java.lang.Integer">

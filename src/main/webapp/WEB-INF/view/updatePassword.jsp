@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -34,6 +35,12 @@
                             <div id="user_info">
                                 <ul>
                                     <a href="user-info"><li class="personal">个人资料</li></a>
+                                    <shiro:hasRole name="0">
+                                        <a href="#"><li class="personal">查看订单</li></a>
+                                    </shiro:hasRole>
+                                    <shiro:hasRole name="1">
+                                        <a href="#"><li class="personal">处理订单</li></a>
+                                    </shiro:hasRole>
                                     <a href="logout"><li class="personal">退出</li></a>
                                 </ul>
                             </div>
@@ -47,7 +54,15 @@
         <!--top-header-->
         <!--start-logo-->
         <div class="logo">
-            <a href="admin-init?pageId=0"><h1>E-SHOP</h1></a>
+            <shiro:hasRole name="0">
+                <a href=""><h1>E-SHOP</h1></a>
+            </shiro:hasRole>
+            <shiro:hasRole name="1">
+                <a href="seller-init?pageId=0"><h1>E-SHOP</h1></a>
+            </shiro:hasRole>
+            <shiro:hasRole name="2">
+                <a href="admin-init?pageId=0"><h1>E-SHOP</h1></a>
+            </shiro:hasRole>
         </div>
         <!--start-logo-->
         <!--addUser-starts-->

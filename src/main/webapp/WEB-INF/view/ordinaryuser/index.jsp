@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -24,7 +26,7 @@
                     </div>
                     <div class="col-md-6 top-header-left">
                         <div class="cart box_1">
-                            <a href="checkout.html">
+                            <a href="user-info">
                                 <div class="total">
                                     <img src="images/user.png" />
                                     <span>${nickname}</span>&nbsp;&nbsp;- <span>${role_type}</span>
@@ -32,7 +34,7 @@
                             </a>
                             <div id="user_info">
                                 <ul>
-                                    <a href=""><li class="personal">个人资料</li></a>
+                                    <a href="user-info"><li class="personal">个人资料</li></a>
                                     <a href=""><li class="personal">查看订单</li></a>
                                     <a href="logout"><li class="personal">退出</li></a>
                                 </ul>
@@ -56,41 +58,53 @@
                 <div class="prdt-top">
                     <div class="col-md-9 prdt-left">
                         <div class="product-one">
-                            <div class="col-md-4 product-left p-left">
-                                <div class="product-main simpleCart_shelfItem" style="padding-bottom: 16px">
-                                    <a href="single.html" class="mask"><img class="img-responsive zoom-img" src="images/cm1.png" alt="" /></a>
-                                    <div class="product-bottom">
-                                        <h3><a href="#" style="color: black">名表</a></h3>
-                                        <p style="line-height: 20px; padding-top: 5px"><a href="#">查看详情</a></p>
-                                        <h4>
-                                            <span class="item_price" style="text-decoration: line-through">$ 329</span>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;
-                                            <span class="item_price">$ 329</span>
-                                        </h4>
-                                        <a href="#">购买该商品</a>
-                                    </div>
-                                    <div class="srch srch1">
-                                        <span>-50%</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 product-left p-left">
-                                <div class="product-main simpleCart_shelfItem">
-                                    <a href="single.html" class="mask"><img class="img-responsive zoom-img" src="images/cm1.png" alt="" /></a>
-                                    <div class="product-bottom">
-                                        <h3>Smart Watches</h3>
-                                        <p>Explore Now</p>
-                                        <h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">$ 329</span></h4>
-                                    </div>
-                                    <div class="srch srch1">
-                                        <span>-50%</span>
+                            <c:forEach var="commodity" items="${commoditys}" varStatus="status" begin="0" end="2" step="1">
+                                <div class="col-md-4 product-left p-left">
+                                    <div class="product-main simpleCart_shelfItem" style="padding-bottom: 16px">
+                                        <a href="single.html" class="mask"><img class="img-responsive zoom-img" src="images/cm${commodity.imageUrl}.png" alt="" /></a>
+                                        <div class="product-bottom">
+                                            <h3><a href="#" style="color: black">${commodity.commodityName}</a></h3>
+                                            <p style="line-height: 20px; padding-top: 5px"><a href="#">查看详情</a></p>
+                                            <h4>
+                                                <span class="item_price" style="text-decoration: line-through">￥ <fmt:formatNumber type="number" value="${commodity.price}" maxFractionDigits="2"/></span>
+                                                &nbsp;
+                                                <span class="item_price">￥ <fmt:formatNumber type="number" value="${commodity.price - commodity.discount * commodity.price}" maxFractionDigits="2"/></span>
+                                            </h4>
+                                            <a href="#">购买该商品</a>
+                                        </div>
+                                        <div class="srch srch1">
+                                            <span>-${commodity.discount * 100}%</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </c:forEach>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="product-one">
+                            <c:forEach var="commodity" items="${commoditys}" varStatus="status" begin="3" end="5" step="1">
+                                <div class="col-md-4 product-left p-left">
+                                    <div class="product-main simpleCart_shelfItem" style="padding-bottom: 16px">
+                                        <a href="single.html" class="mask"><img class="img-responsive zoom-img" src="images/cm${commodity.imageUrl}.png" alt="" /></a>
+                                        <div class="product-bottom">
+                                            <h3><a href="#" style="color: black">${commodity.commodityName}</a></h3>
+                                            <p style="line-height: 20px; padding-top: 5px"><a href="#">查看详情</a></p>
+                                            <h4>
+                                                <span class="item_price" style="text-decoration: line-through">￥ <fmt:formatNumber type="number" value="${commodity.price}" maxFractionDigits="2"/></span>
+                                                &nbsp;
+                                                <span class="item_price">￥ <fmt:formatNumber type="number" value="${commodity.price - commodity.discount * commodity.price}" maxFractionDigits="2"/></span>
+                                            </h4>
+                                            <a href="#">购买该商品</a>
+                                        </div>
+                                        <div class="srch srch1">
+                                            <span>-${commodity.discount * 100}%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
                             <div class="clearfix"></div>
                         </div>
                     </div>
-                    <div class="col-md-3 header-right" style="padding-bottom: 20px; padding-left: 0px; z-index: 1">
+                    <div class="col-md-3 header-right" style="display: none; padding-bottom: 20px; padding-left: 0px; z-index: 1">
                         <div class="search-bar" style="border: 1px solid #ECECEC">
                             <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
                             <input type="submit" value="">

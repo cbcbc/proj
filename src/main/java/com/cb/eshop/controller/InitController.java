@@ -43,12 +43,23 @@ public class InitController {
         HttpSession session = request.getSession();
         Integer sellerId = (Integer) session.getAttribute("user_id");
         Integer pageId = Integer.parseInt(request.getParameter("pageId"));
-        List<Commodity> commoditys = commodityService.getTenCommoditysByPageId(pageId, sellerId);
+        List<Commodity> commoditys = commodityService.getSomeCommoditysByPageId(pageId, sellerId, 10);
         model.addAttribute("pageId", pageId);
         model.addAttribute("commoditys", commoditys);
         model.addAttribute("startId",pageId * 10 + 1);
-        model.addAttribute("pageNumbers", commodityService.getCommodityPageNumbers(sellerId));
+        model.addAttribute("pageNumbers", commodityService.getCommodityPageNumbers(sellerId,10));
         return "seller/index";
     }
 
+    @RequestMapping(value = "/ordinaryuser-init", method = {RequestMethod.POST, RequestMethod.GET})
+    public String ordinaryUserInit(HttpServletRequest request, Model model) {
+        Integer pageId = Integer.parseInt(request.getParameter("pageId"));
+        List<Commodity> commoditys =
+                commodityService.getSomeCommoditysByPageId(pageId, 1, 6); //1表示供应商id
+        model.addAttribute("pageId", pageId);
+        model.addAttribute("commoditys", commoditys);
+        model.addAttribute("startId",pageId * 6 + 1);
+        model.addAttribute("pageNumbers", commodityService.getCommodityPageNumbers(1, 6));
+        return "ordinaryuser/index";
+    }
 }

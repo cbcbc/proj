@@ -12,7 +12,8 @@ public interface ICommodityDao {
 
     void deleteCommoditysBySellerId(@Param("sellerId") Integer sellerId);
 
-    List<Commodity> selectSomeCommoditysFromStartId(@Param("startId") Integer startId, @Param("sellerId") Integer sellerId);
+    List<Commodity> selectSomeCommoditysFromStartId(@Param("startId") Integer startId, @Param("sellerId") Integer sellerId,
+                                                    @Param("pageNum") Integer pageNum);
 
     Integer selectCommodityNumbers(@Param("sellerId") Integer sellerId);
 

@@ -25,8 +25,9 @@ public interface IUserDao {
                  @Param("username") String username, @Param("password") String password,
                  @Param("remark") String remark);
 
-    void updateManagerInfoByUsername(@Param("nickname") String nickname, @Param("phoneNumber") String phoneNumber,
-                           @Param("remark") String remark, @Param("username") String username);
+    void updateUserInfoByUsername(@Param("nickname") String nickname, @Param("phoneNumber") String phoneNumber,
+                                     @Param("address") String address, @Param("remark") String remark,
+                                     @Param("username") String username, @Param("mailAddress") String mailAddress);
 
     void updateSellerInfoByUsername();
 

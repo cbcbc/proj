@@ -8,9 +8,9 @@ import java.util.List;
 public interface ICommodityService {
     List<Commodity> getCommoditysByCategory(Integer category);
 
-    List<Commodity> getTenCommoditysByPageId(Integer pageId, Integer userId);
+    List<Commodity> getSomeCommoditysByPageId(Integer pageId, Integer sellerId, Integer pageNum);
 
-    Integer getCommodityPageNumbers(Integer userId);
+    Integer getCommodityPageNumbers(Integer sellerId, Integer pageNum);
 
     void saveCommodity(String commodityName, Integer storage, Integer category, Double price,
                        String description, String imageUrl, Integer sellerId, Double discount, String remark);

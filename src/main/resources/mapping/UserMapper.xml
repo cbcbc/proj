@@ -47,8 +47,9 @@
             values(#{roleType}, #{nickname}, #{phoneNumber}, #{address},#{username}, #{password},#{remark})
     </insert>
 
-    <update id="updateManagerInfoByUsername">
-        update t_user set nickname = #{nickname}, phone_number = #{phoneNumber}, remark = #{remark}
+    <update id="updateUserInfoByUsername">
+        update t_user set nickname = #{nickname}, phone_number = #{phoneNumber}, address = #{address},
+            remark = #{remark}, mail_address = #{mailAddress}
             where username = #{username}
     </update>
 

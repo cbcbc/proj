@@ -69,8 +69,8 @@
                     <th class="manager_table th">昵称</th>
                     <th class="manager_table th">角色类型及修改确认</th>
                     <th class="manager_table th">联系电话</th>
-                    <th class="manager_table th">收货地址</th>
-                    <th class="manager_table th">邮件地址</th>
+                    <th class="manager_table th">地址</th>
+                    <th class="manager_table th">电子邮箱</th>
                     <th class="manager_table th">状态</th>
                     <th class="manager_table th">操作</th>
                 </tr>

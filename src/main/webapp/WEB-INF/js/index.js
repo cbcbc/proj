@@ -33,7 +33,7 @@ function deleteUser(i) {
         if(window.confirm('您确定要删除该项吗？')) {
             var pageId = $(".current_page").text() - 1;
             var userId = $("#user_id" + i).val();
-            window.location.href = "manager/delete-user?pageId=" + pageId + "&userId=" + userId;
+            window.location.href = "delete-user?pageId=" + pageId + "&userId=" + userId;
         }
     });
 }
@@ -43,19 +43,19 @@ function updateUserRoleType(i) {
         var pageId = $(".current_page").text() - 1;
         var userId = $("#user_id" + i).val();
         var roleType = $("#manager_select" + i + " option:selected").val();
-        window.location.href = "manager/update-user?pageId=" + pageId + "&userId=" + userId + "&roleType=" + roleType;
+        window.location.href = "update-user?pageId=" + pageId + "&userId=" + userId + "&roleType=" + roleType;
     });
 }
 
 function addUser() {
     $(".add_user_btn").click(function () {
-        window.location.href = "manager/add-user";
+        window.location.href = "add-user";
     });
 }
 
 function addCommodity() {
     $(".add_commodity_btn").click(function () {
-        window.location.href = "seller/add-commodity";
+        window.location.href = "add-commodity";
     });
 }
 
@@ -64,7 +64,7 @@ function deleteCommodity(i) {
         if(window.confirm('您确定要删除该项吗？')) {
             var pageId = $(".current_page").text() - 1;
             var commodityId = $("#commodity_id" + i).val();
-            window.location.href = "seller/delete-commodity?pageId=" + pageId + "&commodityId=" + commodityId;
+            window.location.href = "delete-commodity?pageId=" + pageId + "&commodityId=" + commodityId;
         }
     });
 }
@@ -72,7 +72,7 @@ function deleteCommodity(i) {
 function updateCommodity(i) {
     $("#update_commodity" + i).click(function () {
         var commodityId = $("#commodity_id" + i).val();
-        window.location.href = "seller/update-commodity?commodityId=" + commodityId;
+        window.location.href = "update-commodity?commodityId=" + commodityId;
     });
 }
 

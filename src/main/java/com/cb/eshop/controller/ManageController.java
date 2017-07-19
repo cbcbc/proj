@@ -68,26 +68,27 @@ public class ManageController {
 
     @RequestMapping(value = "/user-info", method = {RequestMethod.GET, RequestMethod.POST})
     public String userInfo() {
-        return "manager/personal";
+        return "personal";
     }
 
     @RequestMapping(value = "/update-user-info", method = {RequestMethod.GET, RequestMethod.POST})
-    public String updateUserInfo(@RequestParam("nickname") String nickname,
-                                 @RequestParam("phone_number") String phoneNumber, @RequestParam("remark") String remark,
+    public String updateUserInfo(@RequestParam("nickname") String nickname, @RequestParam("phone_number") String phoneNumber,
+                                 @RequestParam("address") String address,@RequestParam("remark") String remark,
                                  @RequestParam("username") String username, @RequestParam("mail_address") String mailAddress,
                                  HttpServletRequest request) {
-        userService.updateManagerInfoByUsername(nickname, phoneNumber, remark, username);
+        userService.updateUserInfoByUsername(nickname, phoneNumber, address, remark, username, mailAddress);
         HttpSession session = request.getSession();
         session.setAttribute("nickname", nickname);
         session.setAttribute("phone_number", phoneNumber);
+        session.setAttribute("address", address);
         session.setAttribute("mail_address", mailAddress);
         session.setAttribute("remark", remark);
-        return "manager/personal";
+        return "personal";
     }
 
     @RequestMapping(value = "/update-password", method = RequestMethod.GET)
     public String updatePassword() {
-        return "manager/updatePassword";
+        return "updatePassword";
     }
 
     @RequestMapping(value = "/update-password", method = RequestMethod.POST)
@@ -100,7 +101,7 @@ public class ManageController {
             userService.updatePasswordByUsername(username, password);
             model.addAttribute("update_password_success", "密码更新成功！");
         }
-        return "manager/updatePassword";
+        return "updatePassword";
     }
 
     @RequestMapping(value = "/add-commodity", method = RequestMethod.GET)
