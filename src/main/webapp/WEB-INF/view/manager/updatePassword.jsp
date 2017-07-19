@@ -47,7 +47,7 @@
         <!--top-header-->
         <!--start-logo-->
         <div class="logo">
-            <a href="#"><h1>E-SHOP</h1></a>
+            <a href="admin-init?pageId=0"><h1>E-SHOP</h1></a>
         </div>
         <!--start-logo-->
         <!--addUser-starts-->

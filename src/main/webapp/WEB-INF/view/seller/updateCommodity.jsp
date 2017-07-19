@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page isELIgnored="false" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta name="keywords" content="E-SHOP, Bootstrap Web Templates" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>个人资料</title>
+        <title>修改商品信息</title>
 
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
         <link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -34,6 +32,7 @@
                             <div id="user_info">
                                 <ul>
                                     <a href="user-info"><li class="personal">个人资料</li></a>
+                                    <a href="#"><li class="personal">订单处理</li></a>
                                     <a href="logout"><li class="personal">退出</li></a>
                                 </ul>
                             </div>
@@ -47,29 +46,37 @@
         <!--top-header-->
         <!--start-logo-->
         <div class="logo">
-            <a href="admin-init?pageId=0"><h1>E-SHOP</h1></a>
+            <a href="seller-init?pageId=0"><h1>E-SHOP</h1></a>
         </div>
         <!--start-logo-->
         <!--addUser-starts-->
         <div style="margin-top: 50px; margin-left: 30px">
-            <h3 class="ghj">个人资料</h3>
+            <h3 class="ghj">修改商品信息</h3>
             <div>
-                <form action="update-user-info" method="post" id="update_user_form" onsubmit="return updateUser()">
-                    <div>
-                        <span>角色类型：</span>
-                        <input name="role_type" type="text" value="${role_type}" readonly><br />
-                        <span>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：</span>
-                        <input id="update_nickname" name="nickname" type="text" value="${nickname}">
-                        <span id="nickname_error" style="color: red"></span><br />
-                        <span>联系电话：</span><input name="phone_number" type="text" value="${phone_number}"><br />
+                <form action="update-commodity" method="post" id="commit_commodity" onsubmit="return commitCommodity()">
+                    <span id="update_commodity_success" style="color: red">${update_commodity_success}</span>
+                    <div id="add_user_part1">
+                        <input type="hidden" name="commodity_id" value="${commodity_id}">
+                        <span>商品名称：</span><input name="commodity_name" type="text" value="${commodity_name}" required><span> *</span><br />
+                        <span>商品库存：</span><input id="storage" name="storage" type="text" value="${storage}" required><span> *</span><span id="storage_error" style="color: red"></span><br />
+                        <span>商品类目：</span>
+                        <select class="add_commodity_select" name="category">
+                            <option value="0">类目5</option>
+                            <option value="1">类目1</option>
+                            <option value="2">类目2</option>
+                            <option value="3">类目3</option>
+                            <option value="4">类目4</option>
+                        </select>
+                        <input id="category_hidden" type="hidden" value="${category}"><br />
+                        <span>商品价格：</span><input id="price" name="price" type="text" value="${price}" required><span> *</span><span id="price_error" style="color: red"></span><br />
                     </div>
                     <div>
-                        <span>用&nbsp;&nbsp;户&nbsp;&nbsp;名：</span><input name="username" type="text" value="${username}" readonly><br />
-                        <span>邮箱地址：</span><input id="personal_mail" name="mail_address" type="text" value="${mail_address}"><span class="mail_address_error" style="color: red"></span><br />
+                        <span>商品描述：</span><input name="description" type="text" value="${description}"><br />
+                        <span>图片编号：</span><input name="image_url" type="text" value="${image_url}"><br />
+                        <span>商品折扣：</span><input id="discount" name="discount" type="text" value="${discount}" required><span> *</span><span id="discount_error" style="color: red"></span><br />
                         <span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：</span><input name="remark" type="text" value="${remark}">
                     </div>
-                    <input class="personal_btn" id="update_user_btn" type="submit" value="保存修改">
-                    <input class="personal_btn" id="update_password_btn" type="button" value="修改密码"><br/>
+                    <input id="commit_commodity_btn" type="submit" value="提交"><br />
                 </form>
             </div>
         </div>

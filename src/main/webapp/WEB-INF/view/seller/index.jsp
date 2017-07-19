@@ -34,6 +34,7 @@
                             <div id="user_info">
                                 <ul>
                                     <a href="user-info"><li class="personal">个人资料</li></a>
+                                    <a href="#"><li class="personal">订单处理</li></a>
                                     <a href="logout"><li class="personal">退出</li></a>
                                 </ul>
                             </div>
@@ -47,14 +48,19 @@
         <!--top-header-->
         <!--start-logo-->
         <div class="logo">
-            <a href="#"><h1>E-SHOP</h1></a>
+            <a href="seller-init?pageId=0"><h1>E-SHOP</h1></a>
         </div>
         <!--start-logo-->
         <!--manager-starts-->
         <div class="manager_module">
             <h3 class="ghj">商品管理</h3>
-            <div class="add_user">
-                <input class="add_user_btn" type="button" value="添加商品">
+            <div class="add_commodity">
+                <input class="add_commodity_btn" type="button" value="添加商品"><br />
+                <section class="sky-form" style="display: none; margin-top: 15px;">
+                    <label class="checkbox">
+                        <input type="checkbox" name="checkbox" checked=""><i></i>隐藏已删除商品
+                    </label>
+                </section>
             </div>
             <table id="manager_table">
                 <thead>
@@ -76,7 +82,7 @@
                     <tr>
                         <td class="manager_table">
                             ${status.index + startId}
-                            <input id="user_id${status.index}" class="user_id" type="hidden" value="${user.id}">
+                            <input id="commodity_id${status.index}" class="commodity_id" type="hidden" value="${commodity.id}">
                         </td>
                         <td class="manager_table">${commodity.commodityName}</td>
                         <td class="manager_table">${commodity.storage}</td>
@@ -98,7 +104,7 @@
                             </c:if>
                         </td>
                         <td class="manager_table">${commodity.price}</td>
-                        <td class="manager_table" style="width: 20%">${commodity.description}</td>
+                        <td class="manager_table" style="width: 300px">${commodity.description}</td>
                         <td class="manager_table"><img src="images/cm${commodity.imageUrl}.png" width="100px" /></td>
                         <td class="manager_table">${commodity.discount}</td>
                         <td class="manager_table" id="is_delete${status.index}">
@@ -111,7 +117,10 @@
                                 </c:otherwise>
                             </c:choose>
                         </td>
-                        <td class="manager_table"><input id="delete_user${status.index}" class="delete_user" type="button" value="删除"></td>
+                        <td class="manager_table">
+                            <input id="update_commodity${status.index}" class="update_commodity" type="button" value="修改">
+                            <input id="delete_commodity${status.index}" class="delete_commodity" type="button" value="删除">
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>

@@ -15,4 +15,20 @@ public interface ICommodityDao {
     List<Commodity> selectSomeCommoditysFromStartId(@Param("startId") Integer startId, @Param("sellerId") Integer sellerId);
 
     Integer selectCommodityNumbers(@Param("sellerId") Integer sellerId);
+
+    void insertCommodity(@Param("commodityName") String commodityName, @Param("storage") Integer storage,
+                         @Param("category") Integer category, @Param("price") Double price,
+                         @Param("description") String description, @Param("imageUrl") String imageUrl,
+                         @Param("sellerId") Integer sellerId, @Param("discount") Double discount,
+                         @Param("remark") String remark);
+
+    void deleteCommodityByCommodityId(@Param("commodityId") Integer commodityId);
+
+    Commodity selectCommodityByCommodityId(@Param("commodityId") Integer commodityId);
+
+    void updateCommodityByCommodityId(@Param("commodityId") Integer commodityId, @Param("commodityName") String commodityName,
+                                      @Param("storage") Integer storage, @Param("category") Integer category,
+                                      @Param("price") Double price, @Param("description") String description,
+                                      @Param("imageUrl") String imageUrl, @Param("discount") Double discount,
+                                      @Param("remark") String remark);
 }

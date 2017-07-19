@@ -34,4 +34,22 @@
         SELECT COUNT(*) FROM t_commodity WHERE seller_id = #{sellerId}
     </select>
 
+    <insert id="insertCommodity">
+        insert into t_commodity(commodity_name, storage, category, price, description, image_url, seller_id, discount, remark)
+            values(#{commodityName}, #{storage}, #{category}, #{price}, #{description}, #{imageUrl}, #{sellerId}, #{discount}, #{remark})
+    </insert>
+
+    <update id="deleteCommodityByCommodityId">
+        update t_commodity set is_delete = 1 where id = #{commodityId}
+    </update>
+
+    <select id="selectCommodityByCommodityId" parameterType="java.lang.Integer" resultMap="CommodityMap">
+        SELECT * FROM t_commodity WHERE id = #{commodityId}
+    </select>
+
+    <update id="updateCommodityByCommodityId">
+        update t_commodity set commodity_name = #{commodityName}, storage = #{storage}, category = #{category},
+            price = #{price},  description = #{description}, image_url = #{imageUrl}, discount = #{discount}, remark = #{remark}
+            where id = #{commodityId}
+    </update>
 </mapper>

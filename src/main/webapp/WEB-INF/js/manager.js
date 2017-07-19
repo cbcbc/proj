@@ -30,6 +30,39 @@ function commitUser() {
     });
 }
 
+function commitCommodity() {
+    $("#commit_commodity").submit(function () {
+        var storage = $("#storage").val();
+        if (isNaN(storage) || storage % 1 !=0 || storage < 0 || storage > 100) {
+            $("#storage_error").text(" 商品库存只能是0到100的整数！");
+            $("#price_error").text("");
+            $("#discount_error").text("");
+            $("#add_commodity_success").text("");
+            return false;
+        }
+
+        var price = $("#price").val();
+        if (isNaN(price) || price < 0) {
+            $("#price_error").text(" 商品价格只能是正数！");
+            $("#storage_error").text("");
+            $("#discount_error").text("");
+            $("#add_commodity_success").text("");
+            return false;
+        }
+
+        var discount = $("#discount").val();
+        if (isNaN(discount) || discount < 0 || discount > 1) {
+            $("#discount_error").text(" 商品折扣只能是0到1的数！");
+            $("#storage_error").text("");
+            $("#price_error").text("");
+            $("#add_commodity_success").text("");
+            return false;
+        }
+
+        return true;
+    });
+}
+
 function updateUser() {
     $("#update_user_form").submit(function () {
         if($.trim($("#update_nickname").val()) == "") {
@@ -67,9 +100,16 @@ function updatePasswordConfirm() {
     });
 }
 
+function displayCommodityCategory() {
+    var selected = $("#category_hidden").val();
+    $(".add_commodity_select").find("option[value = '" + selected + "']").attr("selected", "selected");
+}
+
 $(document).ready(function () {
     commitUser();
     updateUser();
     updatePassword();
     updatePasswordConfirm();
+    commitCommodity();
+    displayCommodityCategory();
 });

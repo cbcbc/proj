@@ -33,5 +33,25 @@ public class CommodityService implements ICommodityService {
         return commodityNumbers % 10 == 0 ? commodityNumbers / 10 : commodityNumbers / 10 + 1;
     }
 
+    @Override
+    public void saveCommodity(String commodityName, Integer storage, Integer category, Double price, String description, String imageUrl, Integer sellerId, Double discount, String remark) {
+        commodityDao.insertCommodity(commodityName, storage, category, price, description, imageUrl, sellerId, discount, remark);
+    }
+
+    @Override
+    public void deleteCommodityByCommodityId(Integer commodityId) {
+        commodityDao.deleteCommodityByCommodityId(commodityId);
+    }
+
+    @Override
+    public Commodity getCommodityByCommodityId(Integer commodityId) {
+        return commodityDao.selectCommodityByCommodityId(commodityId);
+    }
+
+    public void updateCommodityByCommodityId(Integer commodityId, String commodityName, Integer storage, Integer category,
+                      Double price, String description, String imageUrl, Double discount, String remark) {
+        commodityDao.updateCommodityByCommodityId(commodityId, commodityName, storage, category, price,
+                description, imageUrl, discount, remark);
+    }
 }
 

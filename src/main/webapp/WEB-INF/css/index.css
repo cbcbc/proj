@@ -223,7 +223,7 @@ skyblue .mepanel img:hover,.skyblue form.contact input[type="text"]:focus,.skybl
 	margin-bottom: 15px;
 }
 
-.add_user {
+.add_user, .add_commodity {
 	margin-bottom: 15px;
 	margin-left: 15px;
 }
@@ -240,13 +240,14 @@ skyblue .mepanel img:hover,.skyblue form.contact input[type="text"]:focus,.skybl
 	text-decoration:underline;
 }
 
-.add_user_btn, .update_user, .delete_user, #commit_user_btn, .personal_btn {
+.add_user_btn, .update_user, .delete_user, .delete_commodity, #commit_user_btn, .personal_btn, .update_commodity, .add_commodity_btn, #commit_commodity_btn {
 	background: #73B6E1;
 	color: #FFF;
 	padding: 0.5em 1.2em;
 	border: none;
 	outline: none;
 	font-size: 14px;
+	margin: 2px;
 }
 
 .manager_select {
@@ -254,11 +255,11 @@ skyblue .mepanel img:hover,.skyblue form.contact input[type="text"]:focus,.skybl
 	padding: 0.35em 0.8em;
 }
 
-#commit_user {
+#commit_user, #commit_commodity {
 	margin-left: 15px;
 }
 
-#commit_user div input, #update_user_form div input, #update_password_form div input {
+#commit_user div input, #commit_commodity div input, #update_user_form div input, #update_password_form div input {
 	width: 30%;
 	margin: 10px;
 	color: #000;
@@ -269,15 +270,15 @@ skyblue .mepanel img:hover,.skyblue form.contact input[type="text"]:focus,.skybl
 	border: 1px solid #000;
 }
 
-#commit_user div span {
+#commit_user div span, #commit_commodity div span {
 	font-size: 16px;
 }
 
-#commit_user #add_user_part1 {
+#commit_user #add_user_part1, #commit_commodity #add_user_part1 {
 	float: left;
 }
 
-#commit_user div {
+#commit_user div, #commit_commodity div {
 	width: 100%;
 }
 
@@ -286,7 +287,12 @@ skyblue .mepanel img:hover,.skyblue form.contact input[type="text"]:focus,.skybl
 	margin-top: 10px;
 }
 
-.add_user_select {
+#commit_commodity_btn {
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+.add_user_select, .add_commodity_select {
 	font-size: 14px;
 	padding: 0.1em;
 	width: 30%;

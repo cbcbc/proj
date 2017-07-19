@@ -47,7 +47,7 @@
         <!--top-header-->
         <!--start-logo-->
         <div class="logo">
-            <a href="#"><h1>E-SHOP</h1></a>
+            <a href="admin-init?pageId=0"><h1>E-SHOP</h1></a>
         </div>
         <!--start-logo-->
         <!--manager-starts-->
@@ -55,6 +55,11 @@
             <h3 class="ghj">用户管理</h3>
             <div class="add_user">
                 <input class="add_user_btn" type="button" value="添加用户">
+                <section class="sky-form" style="display: none; margin-top: 15px;">
+                    <label class="checkbox">
+                        <input type="checkbox" name="checkbox" checked=""><i></i>隐藏已删除用户
+                    </label>
+                </section>
             </div>
             <table id="manager_table">
                 <thead>
@@ -67,7 +72,7 @@
                     <th class="manager_table th">收货地址</th>
                     <th class="manager_table th">邮件地址</th>
                     <th class="manager_table th">状态</th>
-                    <th class="manager_table th"></th>
+                    <th class="manager_table th">操作</th>
                 </tr>
                 </thead>
                 <tbody>
