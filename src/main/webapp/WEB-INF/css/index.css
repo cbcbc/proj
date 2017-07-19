@@ -210,6 +210,7 @@ skyblue .mepanel img:hover,.skyblue form.contact input[type="text"]:focus,.skybl
 .manager_table {
 	border: 1px solid #73B6E1;
 	padding: 15px;
+	width: auto;
 }
 
 .manager_module {

@@ -7,7 +7,7 @@
         <meta name="keywords" content="E-SHOP, Bootstrap Web Templates" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>首页</title>
+        <title>用户管理首页</title>
 
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
         <link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -101,7 +101,7 @@
                                 </c:otherwise>
                             </c:choose>
                         </td>
-                        <td class="manager_table"><input id="delete_user${status.index}" class="delete_user" type="button" value="删除用户"></td>
+                        <td class="manager_table"><input id="delete_user${status.index}" class="delete_user" type="button" value="删除"></td>
                     </tr>
                 </c:forEach>
                 </tbody>

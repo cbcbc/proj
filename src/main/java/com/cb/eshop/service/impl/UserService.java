@@ -1,5 +1,6 @@
 package com.cb.eshop.service.impl;
 
+import com.cb.eshop.dao.interfaces.ICommodityDao;
 import com.cb.eshop.dao.interfaces.IUserDao;
 import com.cb.eshop.model.User;
 import com.cb.eshop.service.interfaces.IUserService;
@@ -16,6 +17,9 @@ public class UserService implements IUserService {
 
     @Resource
     private IUserDao userDao;
+
+    @Resource
+    private ICommodityDao commodityDao;
 
     @Override
     public User getUserByUsername(String username) {
@@ -35,11 +39,15 @@ public class UserService implements IUserService {
 
     @Override
     public void deleteUserByUserId(Integer userId) {
+        commodityDao.deleteCommoditysBySellerId(userId);
         userDao.deleteUserByUserId(userId);
     }
 
     @Override
     public void updateUserRoleTypeByUserId(Integer roleType, Integer userId) {
+        if (userDao.selectRoleTypeByUserId(userId) == 1 && roleType != 1) {
+            commodityDao.deleteCommoditysBySellerId(userId);
+        }
         userDao.updateUserRoleTypeByUserId(roleType, userId);
     }
 

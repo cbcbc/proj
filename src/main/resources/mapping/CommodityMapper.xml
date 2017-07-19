@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cb.eshop.dao.interfaces.ICommodityDao">
+
+    <resultMap id="CommodityMap" type="com.cb.eshop.model.Commodity">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="commodity_name" property="commodityName" jdbcType="VARCHAR" />
+        <result column="storage" property="storage" jdbcType="INTEGER" />
+        <result column="category" property="category" jdbcType="INTEGER" />
+        <result column="price" property="price" jdbcType="DOUBLE" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="image_url" property="imageUrl" jdbcType="VARCHAR" />
+        <result column="seller_id" property="sellerId" jdbcType="INTEGER" />
+        <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+        <result column="discount" property="discount" jdbcType="DOUBLE" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="selectCommoditysByCategory" parameterType="java.lang.Integer" resultMap="CommodityMap">
+        SELECT * FROM t_commodity
+            WHERE category = #{category} AND is_delete != 1
+    </select>
+
+    <update id="deleteCommoditysBySellerId" parameterType="java.lang.Integer">
+        update t_commodity set is_delete = 1 where seller_id = #{sellerId}
+    </update>
+
+    <select id="selectSomeCommoditysFromStartId" resultMap="CommodityMap">
+        SELECT * FROM t_commodity WHERE seller_id = #{sellerId}
+            LIMIT #{startId}, 10
+    </select>
+
+    <select id="selectCommodityNumbers" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM t_commodity WHERE seller_id = #{sellerId}
+    </select>
+
+</mapper>

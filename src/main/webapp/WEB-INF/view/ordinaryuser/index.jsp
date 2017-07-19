@@ -58,7 +58,7 @@
                         <div class="product-one">
                             <div class="col-md-4 product-left p-left">
                                 <div class="product-main simpleCart_shelfItem" style="padding-bottom: 16px">
-                                    <a href="single.html" class="mask"><img class="img-responsive zoom-img" src="images/cloth-1.png" alt="" /></a>
+                                    <a href="single.html" class="mask"><img class="img-responsive zoom-img" src="images/cm1.png" alt="" /></a>
                                     <div class="product-bottom">
                                         <h3><a href="#" style="color: black">名表</a></h3>
                                         <p style="line-height: 20px; padding-top: 5px"><a href="#">查看详情</a></p>
@@ -76,7 +76,7 @@
                             </div>
                             <div class="col-md-4 product-left p-left">
                                 <div class="product-main simpleCart_shelfItem">
-                                    <a href="single.html" class="mask"><img class="img-responsive zoom-img" src="images/cloth-1.png" alt="" /></a>
+                                    <a href="single.html" class="mask"><img class="img-responsive zoom-img" src="images/cm1.png" alt="" /></a>
                                     <div class="product-bottom">
                                         <h3>Smart Watches</h3>
                                         <p>Explore Now</p>
@@ -105,11 +105,11 @@
                                         <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>所有商品</label>
                                     </div>
                                     <div class="col col-4">
-                                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>衣</label>
-                                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>食</label>
-                                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>住</label>
-                                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>行</label>
-                                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>其他</label>
+                                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>类目1</label>
+                                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>类目2</label>
+                                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>类目3</label>
+                                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>类目4</label>
+                                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>类目5</label>
                                     </div>
                                 </div>
                             </section>

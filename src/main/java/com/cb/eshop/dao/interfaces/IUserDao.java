@@ -34,4 +34,5 @@ public interface IUserDao {
 
     void updatePasswordByUsername(@Param("username") String username, @Param("password") String password);
 
+    Integer selectRoleTypeByUserId(@Param("userId") Integer userId);
 }

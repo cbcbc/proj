@@ -29,6 +29,7 @@ public class ManageController {
         Integer pageId = Integer.parseInt(request.getParameter("pageId"));
         Integer roleType = Integer.parseInt(request.getParameter("roleType"));
         userService.updateUserRoleTypeByUserId(roleType, userId);
+
         return "forward:/admin-init?pageId=" + pageId;
     }
 

@@ -43,6 +43,7 @@ public class LoginController {
             currentUser.login(upToken);
             User user = userService.getUserByUsername(username);
             HttpSession session = request.getSession();
+            session.setAttribute("user_id", user.getId());
             session.setAttribute("nickname", user.getNickname());
             session.setAttribute("phone_number", user.getPhoneNumber());
             session.setAttribute("address", user.getAddress());
@@ -54,7 +55,7 @@ public class LoginController {
                 return "ordinaryuser/index";
             } else if (currentUser.hasRole("1")) {
                 session.setAttribute("role_type", "销售商");
-                return "seller/index";
+                return "forward:/seller-init?pageId=0";
             } else if (currentUser.hasRole("2")) {
                 session.setAttribute("role_type", "管理员");
                 return "forward:/admin-init?pageId=0";
@@ -64,7 +65,6 @@ public class LoginController {
             model.addAttribute("loginError", "账号或密码不正确，请重新输入！");
         } catch (LockedAccountException lae) {
             model.addAttribute("loginError", "账户已被冻结！");
-            System.out.println("账户已被冻结！");
         } catch (AuthenticationException ae) {
             System.out.println(ae.getMessage());
         }

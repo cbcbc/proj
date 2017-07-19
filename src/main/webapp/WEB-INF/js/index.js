@@ -26,7 +26,7 @@ function displayDeleteButton() {
 
 function deleteUser(i) {
     $("#delete_user" + i).click(function () {
-        if(window.confirm('您确定要删除该用户吗？')) {
+        if(window.confirm('您确定要删除该项吗？')) {
             var pageId = $(".current_page").text() - 1;
             var userId = $("#user_id" + i).val();
             window.location.href = "delete-user?pageId=" + pageId + "&userId=" + userId;
