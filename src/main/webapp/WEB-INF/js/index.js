@@ -76,6 +76,18 @@ function updateCommodity(i) {
     });
 }
 
+function setCategorySelect() {
+    var category = $("#category").val();
+    $("input[name='commodity_radio'][value='" + category + "']").prop("checked", "checked");
+}
+
+function getCategorySelect() {
+    $("input:radio[name='commodity_radio']").change(function () {
+        var category = $("input[name='commodity_radio']:checked").val();
+        window.location.href = "ordinaryuser-init?pageId=0&category=" + category;
+    });
+}
+
 $(document).ready(function () {
     displayUserInfo();
     displayUserType();
@@ -88,4 +100,6 @@ $(document).ready(function () {
     displayDeleteButton();
     addUser();
     addCommodity();
+    setCategorySelect();
+    getCategorySelect();
 });

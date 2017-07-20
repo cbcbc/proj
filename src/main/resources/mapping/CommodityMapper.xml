@@ -26,12 +26,12 @@
     </update>
 
     <select id="selectSomeCommoditysFromStartId" resultMap="CommodityMap">
-        SELECT * FROM t_commodity WHERE seller_id = #{sellerId}
+        SELECT * FROM t_commodity WHERE seller_id = #{sellerId} AND category in ${category}
             LIMIT #{startId}, #{pageNum}
     </select>
 
-    <select id="selectCommodityNumbers" parameterType="java.lang.Integer" resultType="java.lang.Integer">
-        SELECT COUNT(*) FROM t_commodity WHERE seller_id = #{sellerId}
+    <select id="selectCommodityNumbers" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM t_commodity WHERE seller_id = #{sellerId} AND category in ${category}
     </select>
 
     <insert id="insertCommodity">

@@ -49,7 +49,7 @@
         <!--top-header-->
         <!--start-logo-->
         <div class="logo">
-            <a href="#"><h1>E-SHOP</h1></a>
+            <a href="ordinaryuser-init?pageId=0&category=(1,2,3,4,0)"><h1>E-SHOP</h1></a>
         </div>
         <!--start-logo-->
         <!--prdt-starts-->
@@ -61,10 +61,10 @@
                             <c:forEach var="commodity" items="${commoditys}" varStatus="status" begin="0" end="2" step="1">
                                 <div class="col-md-4 product-left p-left">
                                     <div class="product-main simpleCart_shelfItem" style="padding-bottom: 16px">
-                                        <a href="single.html" class="mask"><img class="img-responsive zoom-img" src="images/cm${commodity.imageUrl}.png" alt="" /></a>
+                                        <a href="commodity-info?commodityId=${commodity.id}" class="mask"><img class="img-responsive zoom-img" src="images/cm${commodity.imageUrl}.png" alt="" /></a>
                                         <div class="product-bottom">
-                                            <h3><a href="#" style="color: black">${commodity.commodityName}</a></h3>
-                                            <p style="line-height: 20px; padding-top: 5px"><a href="#">查看详情</a></p>
+                                            <h3><a href="commodity-info?commodityId=${commodity.id}" style="color: black">${commodity.commodityName}</a></h3>
+                                            <p style="line-height: 20px; padding-top: 5px"><a href="commodity-info?commodityId=${commodity.id}">查看详情</a></p>
                                             <h4>
                                                 <span class="item_price" style="text-decoration: line-through">￥ <fmt:formatNumber type="number" value="${commodity.price}" maxFractionDigits="2"/></span>
                                                 &nbsp;
@@ -84,10 +84,10 @@
                             <c:forEach var="commodity" items="${commoditys}" varStatus="status" begin="3" end="5" step="1">
                                 <div class="col-md-4 product-left p-left">
                                     <div class="product-main simpleCart_shelfItem" style="padding-bottom: 16px">
-                                        <a href="single.html" class="mask"><img class="img-responsive zoom-img" src="images/cm${commodity.imageUrl}.png" alt="" /></a>
+                                        <a href="commodity-info?commodityId=${commodity.id}" class="mask"><img class="img-responsive zoom-img" src="images/cm${commodity.imageUrl}.png" alt="" /></a>
                                         <div class="product-bottom">
-                                            <h3><a href="#" style="color: black">${commodity.commodityName}</a></h3>
-                                            <p style="line-height: 20px; padding-top: 5px"><a href="#">查看详情</a></p>
+                                            <h3><a href="commodity-info?commodityId=${commodity.id}" style="color: black">${commodity.commodityName}</a></h3>
+                                            <p style="line-height: 20px; padding-top: 5px"><a href="commodity-info?commodityId=${commodity.id}">查看详情</a></p>
                                             <h4>
                                                 <span class="item_price" style="text-decoration: line-through">￥ <fmt:formatNumber type="number" value="${commodity.price}" maxFractionDigits="2"/></span>
                                                 &nbsp;
@@ -103,6 +103,45 @@
                             </c:forEach>
                             <div class="clearfix"></div>
                         </div>
+                        <div id="pages">
+                            <ul>
+                                <li class="page_select"><a href="ordinaryuser-init?pageId=0&category=${category}">首页</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                                <li class="page_select">
+                                    <c:choose>
+                                        <c:when test="${pageId == 0}">
+                                            <a href="ordinaryuser-init?pageId=${pageId }&category=${category}">上一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a href="ordinaryuser-init?pageId=${pageId-1 }&category=${category}">上一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        </c:otherwise>
+                                    </c:choose>
+                                </li>
+                                <li class="page_select">
+                                    <a href="ordinaryuser-init?pageId=${pageId}&category=${category}" class="current_page">${pageId + 1}</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                </li>
+                                <c:forEach begin="2" end="5" var="i">
+                                    <li class="page_select">
+                                        <c:choose>
+                                            <c:when test="${pageId + i <= pageNumbers}">
+                                                <a href="ordinaryuser-init?pageId=${pageId + i - 1}&category=${category}">${pageId + i}</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </c:when>
+                                        </c:choose>
+                                    </li>
+                                </c:forEach>
+                                <li class="page_select">
+                                    <c:choose>
+                                        <c:when test="${pageId==pageNumbers-1}">
+                                            <a href="ordinaryuser-init?pageId=${pageId }&category=${category}">下一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a href="ordinaryuser-init?pageId=${pageId+1 }&category=${category}">下一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        </c:otherwise>
+                                    </c:choose>
+                                </li>
+                                <li class="page_select"><a href="ordinaryuser-init?pageId=${pageNumbers-1 }&category=${category}">尾页</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                                <li class="page_select">共${pageNumbers}页</li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="col-md-3 header-right" style="display: none; padding-bottom: 20px; padding-left: 0px; z-index: 1">
                         <div class="search-bar" style="border: 1px solid #ECECEC">
@@ -115,15 +154,16 @@
                             <section  class="sky-form">
                                 <h4>商品类目</h4>
                                 <div class="row1 scroll-pane" style="height: auto">
+                                    <input type="hidden" value="${category}" id="category">
                                     <div class="col col-4">
-                                        <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>所有商品</label>
+                                        <label class="radio"><input type="radio" id="all_commodity" name="commodity_radio" value="(1,2,3,4,0)"><i></i>所有商品</label>
                                     </div>
                                     <div class="col col-4">
-                                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>类目1</label>
-                                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>类目2</label>
-                                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>类目3</label>
-                                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>类目4</label>
-                                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>类目5</label>
+                                        <label class="radio"><input type="radio" class="category_commodity" name="commodity_radio" value="(1)"><i></i>类目1</label>
+                                        <label class="radio"><input type="radio" class="category_commodity" name="commodity_radio" value="(2)"><i></i>类目2</label>
+                                        <label class="radio"><input type="radio" class="category_commodity" name="commodity_radio" value="(3)"><i></i>类目3</label>
+                                        <label class="radio"><input type="radio" class="category_commodity" name="commodity_radio" value="(4)"><i></i>类目4</label>
+                                        <label class="radio"><input type="radio" class="category_commodity" name="commodity_radio" value="(0)"><i></i>类目5</label>
                                     </div>
                                 </div>
                             </section>

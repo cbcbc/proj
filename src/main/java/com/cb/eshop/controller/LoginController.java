@@ -52,7 +52,7 @@ public class LoginController {
             session.setAttribute("remark", user.getRemark());
             if (currentUser.hasRole("0")) {
                 session.setAttribute("role_type", "普通用户");
-                return "forward:/ordinaryuser-init?pageId=0";
+                return "forward:/ordinaryuser-init?pageId=0&category=(1,2,3,4,0)";
             } else if (currentUser.hasRole("1")) {
                 session.setAttribute("role_type", "销售商");
                 return "forward:/seller-init?pageId=0";

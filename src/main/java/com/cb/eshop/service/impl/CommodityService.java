@@ -23,13 +23,13 @@ public class CommodityService implements ICommodityService {
     }
 
     @Override
-    public List<Commodity> getSomeCommoditysByPageId(Integer pageId, Integer sellerId, Integer pageNum) {
-        return commodityDao.selectSomeCommoditysFromStartId(pageId * pageNum, sellerId, pageNum);
+    public List<Commodity> getSomeCommoditysByPageId(Integer pageId, Integer sellerId, Integer pageNum, String category) {
+        return commodityDao.selectSomeCommoditysFromStartId(pageId * pageNum, sellerId, pageNum, category);
     }
 
     @Override
-    public Integer getCommodityPageNumbers(Integer sellerId, Integer pageNum) {
-        Integer commodityNumbers = commodityDao.selectCommodityNumbers(sellerId);
+    public Integer getCommodityPageNumbers(Integer sellerId, Integer pageNum, String category) {
+        Integer commodityNumbers = commodityDao.selectCommodityNumbers(sellerId, category);
         return commodityNumbers % pageNum == 0 ? commodityNumbers / pageNum : commodityNumbers / pageNum + 1;
     }
 

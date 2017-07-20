@@ -13,9 +13,9 @@ public interface ICommodityDao {
     void deleteCommoditysBySellerId(@Param("sellerId") Integer sellerId);
 
     List<Commodity> selectSomeCommoditysFromStartId(@Param("startId") Integer startId, @Param("sellerId") Integer sellerId,
-                                                    @Param("pageNum") Integer pageNum);
+                                                    @Param("pageNum") Integer pageNum, @Param("category") String category);
 
-    Integer selectCommodityNumbers(@Param("sellerId") Integer sellerId);
+    Integer selectCommodityNumbers(@Param("sellerId") Integer sellerId, @Param("category") String category);
 
     void insertCommodity(@Param("commodityName") String commodityName, @Param("storage") Integer storage,
                          @Param("category") Integer category, @Param("price") Double price,

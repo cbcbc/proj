@@ -55,7 +55,7 @@
         <!--start-logo-->
         <div class="logo">
             <shiro:hasRole name="0">
-                <a href=""><h1>E-SHOP</h1></a>
+                <a href="ordinaryuser-init?pageId=0&category=(1,2,3,4,0)"><h1>E-SHOP</h1></a>
             </shiro:hasRole>
             <shiro:hasRole name="1">
                 <a href="seller-init?pageId=0"><h1>E-SHOP</h1></a>
