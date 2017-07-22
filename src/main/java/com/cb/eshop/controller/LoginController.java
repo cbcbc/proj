@@ -44,6 +44,7 @@ public class LoginController {
             User user = userService.getUserByUsername(username);
             HttpSession session = request.getSession();
             session.setAttribute("user_id", user.getId());
+            session.setAttribute("password", user.getPassword());
             session.setAttribute("nickname", user.getNickname());
             session.setAttribute("phone_number", user.getPhoneNumber());
             session.setAttribute("address", user.getAddress());

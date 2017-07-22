@@ -93,12 +93,15 @@ public class ManageController {
 
     @RequestMapping(value = "/update-password", method = RequestMethod.POST)
     public String updatePasswordByUsername(@RequestParam("username") String username, @RequestParam("old_password") String oldPssword,
-                                           @RequestParam("password") String password, Model model) {
+                                           @RequestParam("password") String password, Model model, HttpServletRequest request) {
         User user = userService.getUserByUsername(username);
         if (!user.getPassword().equals(DecriptUtil.MD5(oldPssword))) {
             model.addAttribute("old_password_error", "  密码不正确，请重试！");
         } else {
             userService.updatePasswordByUsername(username, password);
+            HttpSession session = request.getSession();
+            session.setAttribute("password", DecriptUtil.MD5(password));
+
             model.addAttribute("update_password_success", "密码更新成功！");
         }
         return "updatePassword";

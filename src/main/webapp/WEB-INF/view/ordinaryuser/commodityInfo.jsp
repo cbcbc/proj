@@ -89,7 +89,7 @@
                                         <li><h4>库存： &nbsp;${storage}</h4></li>
                                         <li><h4>备注： &nbsp;${remark}</h4></li>
                                     </ul>
-                                    <a href="#" class="add-cart item_add" style="background-color: red">购买该商品</a>
+                                    <a href="pay?commodityId=${commodity_id}" class="add-cart item_add" style="background-color: red">购买该商品</a>
                                 </div>
                             </div>
                             <div class="clearfix"> </div>

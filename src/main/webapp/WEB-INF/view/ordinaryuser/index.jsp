@@ -70,7 +70,7 @@
                                                 &nbsp;
                                                 <span class="item_price">￥ <fmt:formatNumber type="number" value="${commodity.price - commodity.discount * commodity.price}" maxFractionDigits="2"/></span>
                                             </h4>
-                                            <a href="#">购买该商品</a>
+                                            <a href="pay?commodityId=${commodity.id}">购买该商品</a>
                                         </div>
                                         <div class="srch srch1">
                                             <span>-${commodity.discount * 100}%</span>
@@ -93,7 +93,7 @@
                                                 &nbsp;
                                                 <span class="item_price">￥ <fmt:formatNumber type="number" value="${commodity.price - commodity.discount * commodity.price}" maxFractionDigits="2"/></span>
                                             </h4>
-                                            <a href="#">购买该商品</a>
+                                            <a href="pay?commodityId=${commodity.id}">购买该商品</a>
                                         </div>
                                         <div class="srch srch1">
                                             <span>-${commodity.discount * 100}%</span>

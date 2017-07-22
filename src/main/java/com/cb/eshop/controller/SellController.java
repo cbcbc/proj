@@ -1,9 +1,7 @@
 package com.cb.eshop.controller;
 
 import com.cb.eshop.model.Commodity;
-import com.cb.eshop.model.User;
 import com.cb.eshop.service.interfaces.ICommodityService;
-import com.cb.eshop.service.interfaces.IUserService;
 import com.cb.eshop.utils.DecriptUtil;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -105,6 +103,42 @@ public class SellController {
         model.addAttribute("remark", commodity.getRemark());
 
         return "ordinaryuser/commodityInfo";
+    }
+
+    @RequestMapping(value = "/pay", method = RequestMethod.GET)
+    public String pay(HttpServletRequest request, Model model) {
+        Integer commodityId = Integer.parseInt(request.getParameter("commodityId"));
+        model.addAttribute("commodity_id", commodityId);
+        return "ordinaryuser/pay";
+    }
+
+    @RequestMapping(value = "/make-order", method = RequestMethod.POST)
+    public String makeOrder(HttpServletRequest request, Model model, @RequestParam("commodity_id") Integer commodityId,
+                            @RequestParam("password") String password) {
+        HttpSession session = request.getSession();
+        String correctPassword = (String) session.getAttribute("password");
+        if (correctPassword.equals(DecriptUtil.MD5(password))) {
+            if (commodityId != null) {
+                Commodity commodity = commodityService.getCommodityByCommodityId(commodityId);
+                if (commodity != null) {
+                    model.addAttribute("commodity_id", commodity.getId());
+                    model.addAttribute("commodity_name", commodity.getCommodityName());
+                    model.addAttribute("storage", commodity.getStorage());
+                    model.addAttribute("category", commodity.getCategory());
+                    model.addAttribute("price", commodity.getPrice());
+                    model.addAttribute("description", commodity.getDescription());
+                    model.addAttribute("image_url", commodity.getImageUrl());
+                    model.addAttribute("discount", commodity.getDiscount());
+                    model.addAttribute("remark", commodity.getRemark());
+                }
+            }
+
+            return "ordinaryuser/makeOrder";
+        } else {
+            model.addAttribute("password_error", " 密码不正确！");
+
+            return "ordinaryuser/pay";
+        }
     }
 
 }
