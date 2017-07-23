@@ -53,5 +53,10 @@ public class CommodityService implements ICommodityService {
         commodityDao.updateCommodityByCommodityId(commodityId, commodityName, storage, category, price,
                 description, imageUrl, discount, remark);
     }
+
+    @Override
+    public void purchaseCommodity(Integer commodityId, Integer purchaseNum) {
+        commodityDao.updateStorageByCommodityId(commodityId, purchaseNum);
+    }
 }
 

@@ -88,6 +88,13 @@ function getCategorySelect() {
     });
 }
 
+function submitOrder() {
+    $("#make_order_btn").click(function () {
+        var commodityId = $("#commodity_id").val();
+        window.location.href = "view-order?commodityId=" + commodityId;
+    });
+}
+
 $(document).ready(function () {
     displayUserInfo();
     displayUserType();
@@ -102,4 +109,6 @@ $(document).ready(function () {
     addCommodity();
     setCategorySelect();
     getCategorySelect();
+    submitOrder()
+
 });

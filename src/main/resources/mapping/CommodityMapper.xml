@@ -52,4 +52,8 @@
             price = #{price},  description = #{description}, image_url = #{imageUrl}, discount = #{discount}, remark = #{remark}
             where id = #{commodityId}
     </update>
+
+    <update id="updateStorageByCommodityId">
+        UPDATE t_commodity set storage = storage - #{purchaseNum} where id = #{commodityId}
+    </update>
 </mapper>

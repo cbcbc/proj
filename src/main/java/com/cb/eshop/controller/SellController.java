@@ -2,6 +2,7 @@ package com.cb.eshop.controller;
 
 import com.cb.eshop.model.Commodity;
 import com.cb.eshop.service.interfaces.ICommodityService;
+import com.cb.eshop.service.interfaces.IOrderService;
 import com.cb.eshop.utils.DecriptUtil;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Controller
 @RequestMapping(value = "/")
@@ -22,6 +26,9 @@ public class SellController {
 
     @Resource
     private ICommodityService commodityService;
+
+    @Resource
+    private IOrderService orderService;
 
     @RequestMapping(value = "/add-commodity", method = RequestMethod.GET)
     public String addCommodity() {
@@ -139,6 +146,45 @@ public class SellController {
 
             return "ordinaryuser/pay";
         }
+    }
+
+    @RequestMapping(value = "/view-order", method = {RequestMethod.POST, RequestMethod.GET})
+    public String viewOrder(HttpServletRequest request, Model model) {
+        Integer commodityId = Integer.parseInt(request.getParameter("commodityId"));
+        if (commodityId != null) {
+            synchronized (commodityService){
+                Commodity commodity = commodityService.getCommodityByCommodityId(commodityId);
+                if (commodity != null) {
+                    Integer storage = commodity.getStorage();
+                    if (storage >= 1){
+                        Double price = commodity.getPrice();
+                        Double discount = commodity.getDiscount();
+                        Double totalPrice = (1 - discount) * price;
+
+                        HttpSession session = request.getSession();
+                        Integer purchaserId = (Integer) session.getAttribute("user_id");
+                        Integer orderStatus = 0;
+
+                        Timestamp currentTime = new Timestamp(new Date().getTime());
+                        Timestamp updateTime = currentTime;
+
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmmss");
+                        String orderId = sdf.format(currentTime) + purchaserId;
+
+                        orderService.saveOrder(orderId, purchaserId, totalPrice, orderStatus, currentTime, updateTime,commodityId, 1);
+                        commodityService.purchaseCommodity(commodityId, 1);
+                    } else {
+                        model.addAttribute("submit_order_error", "商品库存不足！");
+                    }
+                } else {
+                    model.addAttribute("submit_order_error", "提交订单异常！");
+                }
+            }
+        } else {
+            model.addAttribute("submit_order_error", "提交订单异常！");
+        }
+
+        return "ordinaryuser/viewOrder";
     }
 
 }

@@ -32,4 +32,5 @@ public interface ICommodityDao {
                                       @Param("price") Double price, @Param("description") String description,
                                       @Param("imageUrl") String imageUrl, @Param("discount") Double discount,
                                       @Param("remark") String remark);
+    void updateStorageByCommodityId(@Param("commodityId") Integer commodityId, @Param("purchaseNum") Integer purchaseNum);
 }

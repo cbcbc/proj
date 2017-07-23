@@ -21,4 +21,6 @@ public interface ICommodityService {
 
     void updateCommodityByCommodityId(Integer commodityId, String commodityName, Integer storage, Integer category,
                                       Double price, String description, String imageUrl, Double discount, String remark);
+
+    void purchaseCommodity(Integer commodityId, Integer purchaseNum);
 }

@@ -77,6 +77,7 @@
                                 <div class="clearfix"> </div>
                             </ul>
                         </div>
+                        <input id="commodity_id" type="hidden" value="${commodity_id}">
                         <input type="button" value="提交订单" id="make_order_btn">
                         <div class="clearfix"> </div>
                     </div>
