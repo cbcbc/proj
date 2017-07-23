@@ -1,6 +1,7 @@
 package com.cb.eshop.controller;
 
 import com.cb.eshop.model.Commodity;
+import com.cb.eshop.model.Order;
 import com.cb.eshop.service.interfaces.ICommodityService;
 import com.cb.eshop.service.interfaces.IOrderService;
 import com.cb.eshop.utils.DecriptUtil;
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/")
@@ -149,9 +152,12 @@ public class SellController {
     }
 
     @RequestMapping(value = "/view-order", method = {RequestMethod.POST, RequestMethod.GET})
-    public String viewOrder(HttpServletRequest request, Model model) {
-        Integer commodityId = Integer.parseInt(request.getParameter("commodityId"));
-        if (commodityId != null) {
+    public String viewOrder(HttpServletRequest request, Model model) throws UnsupportedEncodingException {
+        String commodityIdString = request.getParameter("commodityId");
+        HttpSession session = request.getSession();
+        Integer purchaserId = (Integer) session.getAttribute("user_id");
+        if (commodityIdString != null) {
+            Integer commodityId = Integer.parseInt(commodityIdString);
             synchronized (commodityService){
                 Commodity commodity = commodityService.getCommodityByCommodityId(commodityId);
                 if (commodity != null) {
@@ -160,31 +166,61 @@ public class SellController {
                         Double price = commodity.getPrice();
                         Double discount = commodity.getDiscount();
                         Double totalPrice = (1 - discount) * price;
-
-                        HttpSession session = request.getSession();
-                        Integer purchaserId = (Integer) session.getAttribute("user_id");
+                        totalPrice = (double)Math.round(totalPrice * 100) / 100;
                         Integer orderStatus = 0;
 
                         Timestamp currentTime = new Timestamp(new Date().getTime());
-                        Timestamp updateTime = currentTime;
 
                         SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmmss");
                         String orderId = sdf.format(currentTime) + purchaserId;
-
-                        orderService.saveOrder(orderId, purchaserId, totalPrice, orderStatus, currentTime, updateTime,commodityId, 1);
+                        Integer sellerId = commodity.getSellerId();
+                        orderService.saveOrder(orderId, purchaserId, totalPrice, sellerId, orderStatus, currentTime, currentTime,commodityId, 1);
                         commodityService.purchaseCommodity(commodityId, 1);
                     } else {
                         model.addAttribute("submit_order_error", "商品库存不足！");
                     }
                 } else {
-                    model.addAttribute("submit_order_error", "提交订单异常！");
+                    model.addAttribute("submit_order_error", "提交订单失败！");
                 }
             }
-        } else {
-            model.addAttribute("submit_order_error", "提交订单异常！");
         }
 
+        String orderStatusString = request.getParameter("orderStatus");
+        String orderId = request.getParameter("orderId");
+        if (orderStatusString != null && orderId != null) {
+            Integer orderStatus = Integer.parseInt(orderStatusString);
+            String purchaserRemark = java.net.URLDecoder.decode(request.getParameter("purchaserRemark"),"UTF-8");
+            orderService.setOrderStatusAndPurchaserRemarkByOrderId(orderId, orderStatus, purchaserRemark);
+        }
+        List<Order> orders = orderService.getOrdersByPurchaserId(purchaserId);
+        model.addAttribute("orders", orders);
+        Integer pageId = Integer.parseInt(request.getParameter("pageId"));
+        model.addAttribute("pageId", pageId);
+        model.addAttribute("startId",pageId * 10 + 1);
+//        model.addAttribute("pageNumbers", userService.getUserPageNumbers());
+
         return "ordinaryuser/viewOrder";
+    }
+
+    @RequestMapping(value = "/process-order", method = {RequestMethod.POST, RequestMethod.GET})
+    public String processOrder(HttpServletRequest request, Model model) throws UnsupportedEncodingException {
+        String orderStatusString = request.getParameter("orderStatus");
+        String orderId = request.getParameter("orderId");
+        if (orderStatusString != null && orderId != null) {
+            Integer orderStatus = Integer.parseInt(orderStatusString);
+            String sellerRemark = java.net.URLDecoder.decode(request.getParameter("sellerRemark"),"UTF-8");
+            orderService.setOrderStatusAndSellerRemarkByOrderId(orderId, orderStatus, sellerRemark);
+        }
+        HttpSession session = request.getSession();
+        Integer sellerId = (Integer) session.getAttribute("user_id");
+        List<Order> orders = orderService.getOrdersBySellerId(sellerId);
+        model.addAttribute("orders", orders);
+        Integer pageId = Integer.parseInt(request.getParameter("pageId"));
+        model.addAttribute("pageId", pageId);
+        model.addAttribute("startId",pageId * 10 + 1);
+//        model.addAttribute("pageNumbers", userService.getUserPageNumbers());
+
+        return "seller/processOrder";
     }
 
 }

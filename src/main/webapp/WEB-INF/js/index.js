@@ -91,7 +91,7 @@ function getCategorySelect() {
 function submitOrder() {
     $("#make_order_btn").click(function () {
         var commodityId = $("#commodity_id").val();
-        window.location.href = "view-order?commodityId=" + commodityId;
+        window.location.href = "view-order?pageId=0&commodityId=" + commodityId;
     });
 }
 

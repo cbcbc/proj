@@ -35,7 +35,7 @@
                             <div id="user_info">
                                 <ul>
                                     <a href="user-info"><li class="personal">个人资料</li></a>
-                                    <a href=""><li class="personal">查看订单</li></a>
+                                    <a href="view-order?pageId=0"><li class="personal">查看订单</li></a>
                                     <a href="logout"><li class="personal">退出</li></a>
                                 </ul>
                             </div>

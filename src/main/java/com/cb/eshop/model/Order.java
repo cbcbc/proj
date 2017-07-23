@@ -11,9 +11,12 @@ public class Order implements Serializable{
     private String orderId;
     private Integer purchaserId;
     private Double totalPrice;
+    private Integer sellerId;
     private Integer orderStatus;
     private Timestamp createTime;
     private Timestamp updateTime;
+    private String sellerRemark;
+    private String purchaserRemark;
     private String remark;
 
     public Integer getId() {
@@ -48,6 +51,14 @@ public class Order implements Serializable{
         this.totalPrice = totalPrice;
     }
 
+    public Integer getSellerId() {
+        return sellerId;
+    }
+
+    public void setSellerId(Integer sellerId) {
+        this.sellerId = sellerId;
+    }
+
     public Integer getOrderStatus() {
         return orderStatus;
     }
@@ -70,6 +81,22 @@ public class Order implements Serializable{
 
     public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getSellerRemark() {
+        return sellerRemark;
+    }
+
+    public void setSellerRemark(String sellerRemark) {
+        this.sellerRemark = sellerRemark;
+    }
+
+    public String getPurchaserRemark() {
+        return purchaserRemark;
+    }
+
+    public void setPurchaserRemark(String purchaserRemark) {
+        this.purchaserRemark = purchaserRemark;
     }
 
     public String getRemark() {

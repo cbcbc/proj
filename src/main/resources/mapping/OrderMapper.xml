@@ -8,14 +8,37 @@
         <result column="purchaser_id" property="purchaserId" jdbcType="INTEGER" />
         <result column="total_price" property="totalPrice" jdbcType="DOUBLE" />
         <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+        <result column="seller_id" property="sellerId" jdbcType="INTEGER" />
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="purchaser_remark" property="purchaserRemark" jdbcType="VARCHAR" />
+        <result column="seller_remark" property="sellerRemark" jdbcType="VARCHAR" />
         <result column="remark" property="remark" jdbcType="VARCHAR" />
     </resultMap>
 
     <insert id="insertOrder">
-        insert into t_order(order_id, purchaser_id, total_price, order_status, create_time, update_time)
-            values(#{orderId}, #{purchaserId}, #{totalPrice}, #{orderStatus}, #{createTime}, #{updateTime})
+        insert into t_order(order_id, purchaser_id, total_price, seller_id, order_status, create_time, update_time)
+            values(#{orderId}, #{purchaserId}, #{totalPrice}, #{sellerId}, #{orderStatus}, #{createTime}, #{updateTime})
     </insert>
+
+    <select id="selectOrdersByPurchaserId" parameterType="java.lang.Integer" resultMap="OrderMap">
+        SELECT * FROM t_order
+        WHERE purchaser_id = #{purchaserId}
+    </select>
+
+    <select id="selectOrdersBySellerId" parameterType="java.lang.Integer" resultMap="OrderMap">
+        SELECT * FROM t_order
+        WHERE seller_id = #{sellerId}
+    </select>
+
+    <update id="updateOrderStatusAndSellerRemarkByOrderId">
+        UPDATE t_order SET order_status = #{orderStatus}, seller_remark = #{sellerRemark}
+            WHERE order_id = #{orderId}
+    </update>
+
+    <update id="updateOrderStatusAndPurchaserRemarkByOrderId">
+        UPDATE t_order SET order_status = #{orderStatus}, purchaser_remark = #{purchaserRemark}
+        WHERE order_id = #{orderId}
+    </update>
 
 </mapper>

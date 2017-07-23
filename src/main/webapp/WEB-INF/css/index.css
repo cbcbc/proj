@@ -240,7 +240,7 @@ skyblue .mepanel img:hover,.skyblue form.contact input[type="text"]:focus,.skybl
 	text-decoration:underline;
 }
 
-.add_user_btn, .update_user, .delete_user, .delete_commodity, #commit_user_btn, .personal_btn, .update_commodity, .add_commodity_btn, #commit_commodity_btn, #make_order_btn, #password_comfirm_btn {
+.add_user_btn, .update_user, .delete_user, .delete_commodity, #commit_user_btn, .personal_btn, .update_commodity, .add_commodity_btn, #commit_commodity_btn, #make_order_btn, #password_comfirm_btn, .order_btn {
 	background: #73B6E1;
 	color: #FFF;
 	padding: 0.5em 1.2em;

@@ -8,7 +8,7 @@
         <meta name="keywords" content="E-SHOP, Bootstrap Web Templates" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>查看订单</title>
+        <title>处理订单</title>
 
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
         <link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -35,7 +35,7 @@
                             <div id="user_info">
                                 <ul>
                                     <a href="user-info"><li class="personal">个人资料</li></a>
-                                    <a href="view-order?pageId=0"><li class="personal">查看订单</li></a>
+                                    <a href="process-order?pageId=0"><li class="personal">处理订单</li></a>
                                     <a href="logout"><li class="personal">退出</li></a>
                                 </ul>
                             </div>
@@ -49,12 +49,12 @@
         <!--top-header-->
         <!--start-logo-->
         <div class="logo">
-            <a href="ordinaryuser-init?pageId=0&category=(1,2,3,4,0)"><h1>E-SHOP</h1></a>
+            <a href="seller-init?pageId=0"><h1>E-SHOP</h1></a>
         </div>
         <!--start-logo-->
-        <!--product-starts-->
+        <!--manager-starts-->
         <div class="manager_module">
-            <h3 class="ghj">查看订单</h3>
+            <h3 class="ghj">处理订单</h3>
             <div class="add_user">
                 <input class="add_user_btn" type="button" value="添加用户">
             </div>
@@ -65,10 +65,10 @@
                     <th class="manager_table th">id</th>
                     <th class="manager_table th">订单号</th>
                     <th class="manager_table th">订单总价</th>
-                    <th class="manager_table th">销售商id</th>
+                    <th class="manager_table th">购买者id</th>
                     <th class="manager_table th">创建时间</th>
                     <th class="manager_table th">更新时间</th>
-                    <th class="manager_table th">供应商备注</th>
+                    <th class="manager_table th">购买者备注</th>
                     <th class="manager_table th">订单状态</th>
                     <th class="manager_table th">操作</th>
                 </tr>
@@ -79,14 +79,15 @@
                         <td class="manager_table">${status.index + startId}</td>
                         <td class="manager_table" id="orderId${status.index}">${order.orderId}</td>
                         <td class="manager_table">￥ <fmt:formatNumber type="number" value="${order.totalPrice}" maxFractionDigits="2"/></td>
-                        <td class="manager_table">${order.sellerId}</td>
+                        <td class="manager_table">${order.purchaserId}</td>
                         <td class="manager_table">${order.createTime}</td>
                         <td class="manager_table">${order.updateTime}</td>
-                        <td class="manager_table">${order.sellerRemark}</td>
-                        <td class="manager_table" id="view_order_status${status.index}">${order.orderStatus}</td>
+                        <td class="manager_table">${order.purchaserRemark}</td>
+                        <td class="manager_table" id="process_order_status${status.index}">${order.orderStatus}</td>
                         <td class="manager_table">
-                            <input class="order_btn" id="view_order_btn${status.index}" type="button">
-                            <input id="view_order_remark${status.index}" type="text" placeholder="操作备注" style="width: 60px; height: 33px; margin-left:5px; font-size: 14px"/>
+                            <input class="order_btn" id="process_order_btn${status.index}" type="button">
+                            <input class="order_btn" id="process_order_btn2${status.index}" type="button">
+                            <input id="process_order_remark${status.index}" type="text" placeholder="操作备注" style="width: 60px; height: 33px; margin-left:5px; font-size: 14px"/>
                         </td>
                     </tr>
                 </c:forEach>
@@ -133,9 +134,9 @@
             </div>
         </div>
         <div class="clearfix"> </div>
-        <!--product-end-->
+        <!--manager-end-->
         <!--footer-starts-->
-        <div class="footer">
+        <div class="footer" style="margin-top: 30px">
             <div class="container">
                 <div class="footer-top">
                     <div class="col-md-6 footer-left">
@@ -151,6 +152,6 @@
 
         <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript" src="js/view.order.js"></script>
+        <script type="text/javascript" src="js/process.order.js"></script>
     </body>
 </html>

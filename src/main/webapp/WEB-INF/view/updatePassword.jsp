@@ -36,10 +36,10 @@
                                 <ul>
                                     <a href="user-info"><li class="personal">个人资料</li></a>
                                     <shiro:hasRole name="0">
-                                        <a href="#"><li class="personal">查看订单</li></a>
+                                        <a href="view-order?pageId=0"><li class="personal">查看订单</li></a>
                                     </shiro:hasRole>
                                     <shiro:hasRole name="1">
-                                        <a href="#"><li class="personal">处理订单</li></a>
+                                        <a href="process-order?pageId=0"><li class="personal">处理订单</li></a>
                                     </shiro:hasRole>
                                     <a href="logout"><li class="personal">退出</li></a>
                                 </ul>

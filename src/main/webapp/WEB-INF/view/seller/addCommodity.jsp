@@ -32,7 +32,7 @@
                             <div id="user_info">
                                 <ul>
                                     <a href="user-info"><li class="personal">个人资料</li></a>
-                                    <a href="#"><li class="personal">订单处理</li></a>
+                                    <a href="process-order?pageId=0"><li class="personal">处理订单</li></a>
                                     <a href="logout"><li class="personal">退出</li></a>
                                 </ul>
                             </div>
