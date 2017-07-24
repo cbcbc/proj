@@ -56,4 +56,8 @@
     <update id="updateStorageByCommodityId">
         UPDATE t_commodity set storage = storage - #{purchaseNum} where id = #{commodityId}
     </update>
+
+    <update id="updateStorageByCommodityIdRoll">
+        UPDATE t_commodity set storage = storage + #{purchaseNum} where id = #{commodityId}
+    </update>
 </mapper>

@@ -27,6 +27,8 @@ public class OrderService implements IOrderService {
     @Resource
     private IOrderDetailDao orderDetailDao;
 
+    @Resource
+    private ICommodityDao commodityDao;
 
     @Override
     public void saveOrder(String orderId, Integer purchaserId, Double totalPrice, Integer sellerId, Integer orderStatus, Timestamp createTime, Timestamp updateTime, Integer commodityId, Integer quantity) {
@@ -125,6 +127,10 @@ public class OrderService implements IOrderService {
     @Override
     public void setOrderStatusAndSellerRemarkByOrderId(String orderId, Integer orderStatus, String sellerRemark) {
         orderDao.updateOrderStatusAndSellerRemarkByOrderId(orderId, orderStatus, sellerRemark);
+        if(orderStatus == 3) {
+            OrderDetail orderDetail = orderDetailDao.selectOrderDetailByOrderId(orderId);
+            commodityDao.updateStorageByCommodityIdRoll(orderDetail.getCommodityId(), 1);
+        }
     }
 
     @Override
