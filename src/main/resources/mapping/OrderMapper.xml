@@ -21,14 +21,20 @@
             values(#{orderId}, #{purchaserId}, #{totalPrice}, #{sellerId}, #{orderStatus}, #{createTime}, #{updateTime})
     </insert>
 
-    <select id="selectOrdersByPurchaserId" parameterType="java.lang.Integer" resultMap="OrderMap">
-        SELECT * FROM t_order
-        WHERE purchaser_id = #{purchaserId}
+    <select id="selectOrdersByPurchaserIdAndQueryCriteria" parameterType="java.lang.String" resultMap="OrderMap">
+        ${queryString}
     </select>
 
-    <select id="selectOrdersBySellerId" parameterType="java.lang.Integer" resultMap="OrderMap">
-        SELECT * FROM t_order
-        WHERE seller_id = #{sellerId}
+    <select id="selectOrderNumbersByPurchaserIdAndQueryCriteria" parameterType="java.lang.String" resultType="java.lang.Integer">
+        ${queryString}
+    </select>
+
+    <select id="selectOrdersBySellerIdAndQueryCriteria" parameterType="java.lang.String" resultMap="OrderMap">
+        ${queryString}
+    </select>
+
+    <select id="selectOrderNumbersBySellerIdAndQueryCriteria" parameterType="java.lang.String" resultType="java.lang.Integer">
+        ${queryString}
     </select>
 
     <update id="updateOrderStatusAndSellerRemarkByOrderId">

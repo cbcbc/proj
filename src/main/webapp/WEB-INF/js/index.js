@@ -95,6 +95,31 @@ function submitOrder() {
     });
 }
 
+function submitQuery() {
+    $("#submit_view_btn").click(function () {
+        var orderId = $("#order_id_query").val();
+        var startTime = $("#start_time_query").val();
+        var overTime = $("#over_time_query").val();
+        var orderStatus = $("#order_status_query").val();
+        window.location.href = "view-order?pageId=0&orderIdQuery=" + orderId +
+            "&startTime=" + startTime + "&overTime=" + overTime + "&orderStatusQuery=" + orderStatus;
+    });
+
+    $("#submit_process_btn").click(function () {
+        var orderId = $("#order_id_query").val();
+        var startTime = $("#start_time_query").val();
+        var overTime = $("#over_time_query").val();
+        var orderStatus = $("#order_status_query").val();
+        window.location.href = "process-order?pageId=0&orderIdQuery=" + orderId +
+            "&startTime=" + startTime + "&overTime=" + overTime + "&orderStatusQuery=" + orderStatus;
+    });
+}
+
+function setOrderStatusQuerySelect() {
+    var orderStatus = $("#order_status_query_vale").val();
+    $("#order_status_query").find("option[value = '" + orderStatus + "']").attr("selected", "selected");
+}
+
 $(document).ready(function () {
     displayUserInfo();
     displayUserType();
@@ -109,6 +134,7 @@ $(document).ready(function () {
     addCommodity();
     setCategorySelect();
     getCategorySelect();
-    submitOrder()
-
+    submitOrder();
+    submitQuery();
+    setOrderStatusQuerySelect();
 });

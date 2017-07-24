@@ -16,13 +16,18 @@ public interface IOrderDao {
                      @Param("orderStatus") Integer orderStatus, @Param("createTime") Timestamp createTime,
                      @Param("updateTime") Timestamp updateTime);
 
-    List<Order> selectOrdersByPurchaserId(@Param("purchaserId") Integer purchaserId);
+    List<Order> selectOrdersByPurchaserIdAndQueryCriteria(@Param("queryString") String queryString);
 
-    List<Order> selectOrdersBySellerId(@Param("sellerId") Integer sellerId);
+    Integer selectOrderNumbersByPurchaserIdAndQueryCriteria(@Param("queryString") String queryString);
+
+    List<Order> selectOrdersBySellerIdAndQueryCriteria(@Param("queryString") String queryString);
+
+    Integer selectOrderNumbersBySellerIdAndQueryCriteria(@Param("queryString") String queryString);
 
     void updateOrderStatusAndSellerRemarkByOrderId(@Param("orderId") String orderId, @Param("orderStatus") Integer orderStatus,
                                     @Param("sellerRemark") String sellerRemark);
 
     void updateOrderStatusAndPurchaserRemarkByOrderId(@Param("orderId") String orderId, @Param("orderStatus") Integer orderStatus,
                                                    @Param("purchaserRemark") String purchaserRemark);
+
 }

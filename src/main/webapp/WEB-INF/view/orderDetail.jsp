@@ -8,7 +8,7 @@
         <meta name="keywords" content="E-SHOP, Bootstrap Web Templates" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>个人资料</title>
+        <title>订单详情</title>
 
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
         <link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -67,33 +67,20 @@
         <!--start-logo-->
         <!--addUser-starts-->
         <div style="margin-top: 50px; margin-left: 30px">
-            <h3 class="ghj">个人资料</h3>
+            <h3 class="ghj">订单详情</h3>
             <div>
-                <form action="update-user-info" method="post" id="update_user_form" onsubmit="return updateUser()">
+                <form action="" method="post" id="update_user_form" >
                     <div>
-                        <span>角色类型：</span>
-                        <input name="role_type" type="text" value="${role_type}" readonly><br />
-                        <span>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：</span>
-                        <input id="update_nickname" name="nickname" type="text" value="${nickname}">
-                        <span id="nickname_error" style="color: red"></span><br />
-                        <span>联系电话：</span><input name="phone_number" type="text" value="${phone_number}"><br />
-                        <shiro:hasRole name="0">
-                            <span>收货地址：</span><input name="address" type="text" value="${address}"><br />
-                        </shiro:hasRole>
-                        <shiro:hasRole name="1">
-                            <span>发货地址：</span><input name="address" type="text" value="${address}"><br />
-                        </shiro:hasRole>
-                        <shiro:hasRole name="2">
-                            <input name="address" type="hidden" value="${address}"><br />
-                        </shiro:hasRole>
+                        <span>订单编号：</span>
+                            <input type="text" value="${orderDetail.orderId}" readonly><br />
+                        <span>商品编号：</span>
+                            <input type="text" value="${orderDetail.commodityId}" readonly>
                     </div>
                     <div>
-                        <span>用&nbsp;&nbsp;户&nbsp;&nbsp;名：</span><input name="username" type="text" value="${username}" readonly><br />
-                        <span>电子邮箱：</span><input id="personal_mail" name="mail_address" type="text" value="${mail_address}"><span class="mail_address_error" style="color: red"></span><br />
-                        <span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：</span><input name="remark" type="text" value="${remark}">
+                        <span>商品数量：</span><input type="text" value="${orderDetail.quantity}" readonly><br />
+                        <span>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：</span>
+                            <input type="text" value="${orderDetail.remark}" readonly>
                     </div>
-                    <input class="personal_btn" id="update_user_btn" type="submit" value="保存修改">
-                    <input class="personal_btn" id="update_password_btn" type="button" value="修改密码"><br/>
                 </form>
             </div>
         </div>

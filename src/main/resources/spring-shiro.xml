@@ -62,13 +62,34 @@
                 /index = anon
                 /logout.jsp = logout
                 /noauthc.jsp = anon
+                /noauthc = anon
                 /js/** = anon
                 /css/** =anon
                 /font-awesome/** = anon
                 /images/** = anon
                 /ordinaryuser/** = authc, roles["0"]
+                /commodity-info = authc, roles["0"]
+                /pay = authc, roles["0"]
+                /make-order = authc, roles["0"]
+                /view-order = authc, roles["0"]
+                /ordinaryuser-init = authc, roles["0"]
+
                 /seller/** = authc, roles["1"]
+                /add-commodity = authc, roles["1"]
+                /delete-commodity = authc, roles["1"]
+                /update-commodity = authc, roles["1"]
+                /process-order = authc, roles["1"]
+                /seller-init = authc, roles["1"]
+
                 /manager/** = authc, roles["2"]
+                /admin-init = authc, roles["2"]
+                /update-user = authc, roles["2"]
+                /delete-user = authc, roles["2"]
+                /add-user = authc, roles["2"]
+
+                /order-detail = authc
+                /user-info = authc
+                /update-password = authc
                 /** = authc
             </value>
         </property>

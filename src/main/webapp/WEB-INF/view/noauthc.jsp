@@ -4,9 +4,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
     <head>
-        <title>noauthc</title>
+        <title>无权限</title>
     </head>
     <body>
-        <h4>noauthc!</h4>
+        <h4>无访问权限！</h4>
     </body>
 </html>

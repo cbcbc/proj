@@ -9,7 +9,7 @@ function sendCommoditysConfirm(i) {
         } else {
             orderStatus = 4;
         }
-        window.location.href = "view-order?pageId=" + pageId + "&orderStatus=" + orderStatus + "&orderId=" + orderId + "&purchaserRemark=" + encodeURIComponent(encodeURIComponent(purchaserRemark));
+        window.location.href = "view-order?pageId=" + pageId + "&changeStatus=1&orderStatus=" + orderStatus + "&orderId=" + orderId + "&purchaserRemark=" + encodeURIComponent(encodeURIComponent(purchaserRemark));
     })
 }
 
@@ -18,7 +18,7 @@ function parseOrderStatus(i) {
     switch(view_order_status)
     {
         case "0":
-            $("#view_order_status" + i).text("订单已提交");
+            $("#view_order_status" + i).text("已提交");
             $("#view_order_btn" + i).hide();
             $("#view_order_remark" + i).hide();
             break;

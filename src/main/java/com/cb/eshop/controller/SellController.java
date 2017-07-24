@@ -2,6 +2,7 @@ package com.cb.eshop.controller;
 
 import com.cb.eshop.model.Commodity;
 import com.cb.eshop.model.Order;
+import com.cb.eshop.model.OrderDetail;
 import com.cb.eshop.service.interfaces.ICommodityService;
 import com.cb.eshop.service.interfaces.IOrderService;
 import com.cb.eshop.utils.DecriptUtil;
@@ -187,17 +188,26 @@ public class SellController {
 
         String orderStatusString = request.getParameter("orderStatus");
         String orderId = request.getParameter("orderId");
-        if (orderStatusString != null && orderId != null) {
+        String changeStatus = request.getParameter("changeStatus");
+        if (orderStatusString != null && orderId != null && changeStatus != null) {
             Integer orderStatus = Integer.parseInt(orderStatusString);
             String purchaserRemark = java.net.URLDecoder.decode(request.getParameter("purchaserRemark"),"UTF-8");
             orderService.setOrderStatusAndPurchaserRemarkByOrderId(orderId, orderStatus, purchaserRemark);
         }
-        List<Order> orders = orderService.getOrdersByPurchaserId(purchaserId);
-        model.addAttribute("orders", orders);
+        String orderIdQuery = request.getParameter("orderIdQuery");
+        String orderStatusQuery = request.getParameter("orderStatusQuery");
+        String startTime = request.getParameter("startTime");
+        String overTime = request.getParameter("overTime");
         Integer pageId = Integer.parseInt(request.getParameter("pageId"));
+        List<Order> orders = orderService.getTenOrdersByPurchaserIdAndQueryCriteria(purchaserId, orderIdQuery, startTime, overTime, orderStatusQuery, pageId);
+        model.addAttribute("orders", orders);
+        model.addAttribute("orderIdQuery", orderIdQuery);
+        model.addAttribute("startTime", startTime);
+        model.addAttribute("overTime", overTime);
+        model.addAttribute("orderStatusQuery", orderStatusQuery);
         model.addAttribute("pageId", pageId);
         model.addAttribute("startId",pageId * 10 + 1);
-//        model.addAttribute("pageNumbers", userService.getUserPageNumbers());
+        model.addAttribute("pageNumbers", orderService.getOrderPageNumbersByPurchaserIdAndQueryCriteria(purchaserId, orderIdQuery, startTime, overTime, orderStatusQuery));
 
         return "ordinaryuser/viewOrder";
     }
@@ -206,21 +216,40 @@ public class SellController {
     public String processOrder(HttpServletRequest request, Model model) throws UnsupportedEncodingException {
         String orderStatusString = request.getParameter("orderStatus");
         String orderId = request.getParameter("orderId");
-        if (orderStatusString != null && orderId != null) {
+        String changeStatus = request.getParameter("changeStatus");
+        if (orderStatusString != null && orderId != null && changeStatus != null) {
             Integer orderStatus = Integer.parseInt(orderStatusString);
             String sellerRemark = java.net.URLDecoder.decode(request.getParameter("sellerRemark"),"UTF-8");
             orderService.setOrderStatusAndSellerRemarkByOrderId(orderId, orderStatus, sellerRemark);
         }
+        String orderIdQuery = request.getParameter("orderIdQuery");
+        String orderStatusQuery = request.getParameter("orderStatusQuery");
+        String startTime = request.getParameter("startTime");
+        String overTime = request.getParameter("overTime");
+
         HttpSession session = request.getSession();
         Integer sellerId = (Integer) session.getAttribute("user_id");
-        List<Order> orders = orderService.getOrdersBySellerId(sellerId);
-        model.addAttribute("orders", orders);
         Integer pageId = Integer.parseInt(request.getParameter("pageId"));
+        List<Order> orders = orderService.getTenOrdersBySellerIdAndQueryCriteria(sellerId, orderIdQuery, startTime, overTime, orderStatusQuery, pageId);
+        model.addAttribute("orders", orders);
+        model.addAttribute("orderIdQuery", orderIdQuery);
+        model.addAttribute("startTime", startTime);
+        model.addAttribute("overTime", overTime);
+        model.addAttribute("orderStatusQuery", orderStatusQuery);
         model.addAttribute("pageId", pageId);
         model.addAttribute("startId",pageId * 10 + 1);
-//        model.addAttribute("pageNumbers", userService.getUserPageNumbers());
+        model.addAttribute("pageNumbers", orderService.getOrderPageNumbersBySellerIdAndQueryCriteria(sellerId, orderIdQuery, startTime, overTime, orderStatusQuery));
 
         return "seller/processOrder";
+    }
+
+    @RequestMapping(value = "/order-detail", method = {RequestMethod.POST, RequestMethod.GET})
+    public String orderDetail(HttpServletRequest request, Model model) {
+        String orderId = request.getParameter("orderId");
+        OrderDetail orderDetail = orderService.getOrderDetailByOrderId(orderId);
+        model.addAttribute("orderDetail", orderDetail);
+
+        return "orderDetail";
     }
 
 }

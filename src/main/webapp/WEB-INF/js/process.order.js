@@ -3,7 +3,7 @@ function sendCommoditys(i) {
         var pageId = $(".current_page").text() - 1;
         var orderId = $("#orderId" + i).text();
         var sellerRemark = $("#process_order_remark" + i).val();
-        window.location.href = "process-order?pageId=" + pageId + "&orderStatus=1&orderId=" + orderId + "&sellerRemark=" + encodeURIComponent(encodeURIComponent(sellerRemark));
+        window.location.href = "process-order?pageId=" + pageId + "&changeStatus=1&orderStatus=1&orderId=" + orderId + "&sellerRemark=" + encodeURIComponent(encodeURIComponent(sellerRemark));
     })
 }
 
@@ -12,7 +12,7 @@ function notSendCommoditys(i) {
         var pageId = $(".current_page").text() - 1;
         var orderId = $("#orderId" + i).text();
         var sellerRemark = $("#process_order_remark" + i).val();
-        window.location.href = "process-order?pageId=" + pageId + "&orderStatus=3&orderId=" + orderId + "&sellerRemark=" + encodeURIComponent(encodeURIComponent(sellerRemark));
+        window.location.href = "process-order?pageId=" + pageId + "&changeStatus=1&orderStatus=3&orderId=" + orderId + "&sellerRemark=" + encodeURIComponent(encodeURIComponent(sellerRemark));
     })
 }
 
@@ -21,7 +21,7 @@ function parseOrderStatus(i) {
     switch(process_order_status)
     {
         case "0":
-            $("#process_order_status" + i).text("已提交订单");
+            $("#process_order_status" + i).text("已提交");
             $("#process_order_btn" + i).show();
             $("#process_order_btn" + i).val("发货");
             $("#process_order_btn2" + i).show();

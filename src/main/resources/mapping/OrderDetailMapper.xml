@@ -15,4 +15,8 @@
             values(#{orderId}, #{commodityId}, #{quantity})
     </insert>
 
+    <select id="selectOrderDetailByOrderId" parameterType="java.lang.String" resultMap="OrderDetailMap">
+        SELECT * FROM t_order_detail WHERE order_id = #{orderId}
+    </select>
+
 </mapper>

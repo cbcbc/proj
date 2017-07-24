@@ -107,4 +107,8 @@ public class ManageController {
         return "updatePassword";
     }
 
+    @RequestMapping(value = "/noauthc", method = {RequestMethod.POST, RequestMethod.GET})
+    public String noauthc() {
+        return "noauthc";
+    }
 }
